@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- ===== Character / Viewport ====================================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ===== Primary Meta ============================================= -->
+  <title>Sociail Assistant – Hands-Free Shared Intelligence</title>
+  <meta name="description" content="Meet Sociail Assistant: a pocket-sized AI companion that lets you collaborate hands-free—desk, car, or workshop." />
+  <link rel="canonical" href="https://sociail-assistant.com/" />
+
+  <!-- ===== Open Graph / Twitter Cards ================================ -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://sociail-assistant.com/" />
+  <meta property="og:title"       content="Sociail Assistant – Hands-Free Shared Intelligence" />
+  <meta property="og:description" content="Your AI companion that moves Sociail at the pace of life." />
+  <meta property="og:image"       content="https://sociail-assistant.com/og-banner.jpg" />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <meta name="twitter:title"      content="Sociail Assistant" />
+  <meta name="twitter:description"content="Hands-free Shared Intelligence—desk to car, workshop to kitchen." />
+  <meta name="twitter:image"      content="https://sociail-assistant.com/og-banner.jpg" />
+
+  <!-- ===== Favicons ================================================== -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#f9d949" />
+
+  <!-- ===== Styles ==================================================== -->
+  <style>
+  /* Reset + tokens */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --y:#f9d949;--b:#0066ff;--txt:#1d1d1f;--sub:#86868b;
+    --bg:#fbfbfd;--alt:#f5f5f7;--nav:44px;--brd:rgba(0,0,0,.1)
+  }
+  body{font-family:-apple-system,BlinkMacSystemFont,'Helvetica Neue',Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--txt);line-height:1.45;overflow-x:hidden}
+
+  /* Nav */
+  nav{position:fixed;inset:0 0 auto;border-block-end:1px solid var(--brd);
+      height:var(--nav);backdrop-filter:saturate(180%) blur(20px);
+      background:rgba(251,251,253,.8);z-index:999}
+  .nav-wrap{max-width:62rem;margin:0 auto;padding-inline:1.5rem;height:100%;
+            display:flex;align-items:center;justify-content:space-between}
+  .logo{display:inline-flex;gap:.5rem;text-decoration:none;color:inherit;font-weight:600}
+  .badge{background:var(--y);padding:.25rem .75rem;border-radius:1rem;}
+  .badge span{background:var(--b);color:#fff;padding:.1rem .3rem;border-radius:.25rem}
+  .nav-links{display:flex;gap:1.8rem;list-style:none;font-size:.875rem}
+  .nav-links a{opacity:.8;text-decoration:none;color:inherit}
+  .nav-links a:hover{opacity:1}
+
+  /* Hero */
+  header{min-height:calc(100svh - var(--nav));padding-block-start:var(--nav);
+         display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+  .hero-inner{max-width:62rem;margin:0 auto;padding:4rem 1.5rem;text-align:center;z-index:1}
+  .coming{display:inline-block;margin-block-end:1.5rem;
+          padding:.5rem 1.25rem;border-radius:999px;font:.875rem/1 var(--font);
+          font-weight:600;letter-spacing:.03em;color:#fff;
+          background:linear-gradient(135deg,var(--y),var(--b))}
+  h1{font-weight:700;letter-spacing:-.02em;line-height:1.05;
+     font-size:clamp(2.25rem,6vw,3.5rem)}
+  .grad{background:linear-gradient(135deg,var(--y),var(--b));
+        -webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .subtitle{max-width:40rem;margin:1rem auto 0;color:var(--sub);
+            font-size:clamp(1.125rem,3.5vw,1.75rem)}
+
+  /* Device zone */
+  .device-zone{margin-top:2rem;flex:1;display:flex;justify-content:center;align-items:center;position:relative}
+  .rings{position:absolute;top:40%;left:50%;translate:-50% -50%;width:120vmax;height:120vmax;pointer-events:none}
+  .ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(134,134,139,.18);animation:pulse 6s ease-out infinite}
+  .ring:nth-child(2){border-color:rgba(134,134,139,.13);animation-delay:.7s}
+  .ring:nth-child(3){border-color:rgba(134,134,139,.09);animation-delay:1.4s}
+  @keyframes pulse{0%{scale:.7;opacity:0}40%{opacity:1}100%{scale:1.25;opacity:0}}
+
+  .device{position:relative;width:clamp(14rem,40vw,20rem);aspect-ratio:2/1;
+          animation:float 6s ease-in-out infinite}
+  @keyframes float{0%,100%{translate:-50% -50%}50%{translate:-50% -60%}}
+  .body{position:absolute;inset:0;border-radius:3rem;
+        background:linear-gradient(180deg,var(--y)0%,#eac94e 100%);
+        box-shadow:0 30px 60px rgba(0,0,0,.3),0 20px 40px rgba(0,0,0,.2)}
+  .center{position:absolute;top:50%;left:50%;translate:-50% -50%;width:4rem;height:4rem;
+          border-radius:50%;border:3px solid #0052cc;
+          background:radial-gradient(circle at 30% 30%,var(--b)0%,#0049c5 100%);
+          box-shadow:0 0 30px rgba(0,102,255,.5);animation:talk 2.4s ease-in-out infinite}
+  @keyframes talk{0%,40%,100%{scale:1}20%{scale:.82}}
+
+  /* Simple ticker (hidden on mobile) */
+  .ticker{position:absolute;left:0;right:0;white-space:nowrap;pointer-events:none;
+          font:14px/1 'SF Mono',monospace;color:var(--sub);opacity:.55}
+  .t1{top:10%}.t2{bottom:10%}
+  .ticker span{padding-inline:2.5rem}
+  @keyframes marquee{0%{translate:0}100%{translate:-50%}}
+  .ticker div{display:inline-block;animation:marquee 26s linear infinite}
+  .t2 div{animation-direction:reverse}
+  @media(max-width:48rem){nav .nav-links{display:none}.ticker{display:none}.device{width:70vw}}
+
+  /* Prefers-reduced-motion */
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important}
+  }
+  </style>
+
+  <!-- ===== Plausible / Polyfill  (optional) ========================== -->
+  <!--
+  <script defer data-domain="sociail-assistant.com" src="https://plausible.io/js/script.js"></script>
+  -->
+  <script nomodule src="https://polyfill.io/v3/polyfill.min.js"></script>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav>
+    <div class="nav-wrap" role="navigation" aria-label="Main Navigation">
+      <a href="/" class="logo" aria-label="Sociail Home">
+        <span class="badge">SOCI<span>AI</span>L</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#notify">Get Notified</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header>
+    <div class="hero-inner">
+      <span class="coming" aria-label="Coming Fall 2026">COMING FALL 2026</span>
+      <h1>Meet <span class="grad">Sociail Assistant</span></h1>
+      <p class="subtitle">Hands-free Shared Intelligence—desk to car, workshop to kitchen.</p>
+    </div>
+
+    <!-- Floating device + rings -->
+    <div class="device-zone" aria-hidden="true">
+      <div class="rings"><div class="ring"></div><div class="ring"></div><div class="ring"></div></div>
+      <div class="device" style="position:absolute;top:50%;left:50%;translate:-50% -50%;">
+        <div class="body"></div>
+        <div class="center"></div>
+      </div>
+    </div>
+
+    <!-- Tickers -->
+    <div class="ticker t1"><div>
+      <span>"Schedule team stand-up"</span><span>"Add milk to list"</span>
+      <span>"Torque spec Civic"</span><span>"Brainstorm podcast names"</span>
+    </div></div>
+    <div class="ticker t2"><div>
+      <span>"Play relaxing music"</span><span>"Use Personal Space"</span>
+      <span>"Weather tomorrow?"</span><span>"Draft marketing email"</span>
+    </div></div>
+  </header>
+
+  <!-- == more sections (features / CTA) here == -->
+
+  <!-- FOOTER -->
+  <footer style="text-align:center;padding:3rem 1rem;border-top:1px solid var(--brd);background:var(--alt);font-size:.8125rem;color:var(--sub)">
+    © 2025 Sociail&nbsp;· <a href="/privacy" style="color:inherit">Privacy</a> | <a href="/terms" style="color:inherit">Terms</a>
+  </footer>
+
+<!-- Smooth-scroll -->
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,320 @@
+/* Responsive Design and Media Queries */
+
+/* Tablet and Large Mobile */
+@media (max-width: 1024px) {
+    .nav-content {
+        padding: 0 16px;
+    }
+    
+    .hero-content {
+        padding: 40px 16px 30px;
+    }
+    
+    .features-content {
+        padding: 0 16px;
+    }
+    
+    .spaces-demo {
+        padding: 0 16px;
+    }
+    
+    .cta-content {
+        padding: 0 16px;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    /* Navigation */
+    .nav-content {
+        padding: 0 16px;
+        height: 44px;
+    }
+    
+    .nav-links {
+        gap: 20px;
+    }
+    
+    .nav-links a {
+        font-size: 13px;
+    }
+    
+    .theme-toggle {
+        gap: 10px;
+    }
+    
+    /* Hero Section */
+    .hero-content {
+        padding: 40px 16px 20px;
+    }
+    
+    .coming-soon-badge {
+        font-size: 12px;
+        padding: 6px 16px;
+        margin-bottom: 16px;
+    }
+    
+    h1 {
+        font-size: 36px;
+        line-height: 1.1;
+        margin-bottom: 16px;
+    }
+    
+    .hero-subtitle {
+        font-size: 20px;
+        line-height: 1.3;
+        margin-bottom: 30px;
+    }
+    
+    /* Enhanced Device Section for Mobile */
+    .device-section {
+        min-height: 400px;
+        padding: 10px 0 30px 0;
+    }
+    
+    .device-preview {
+        min-height: 350px;
+    }
+    
+    /* Optimized Device Animation */
+    .device-float {
+        transform: translate(-50%, -50%) scale(0.75);
+        width: 280px;
+        height: 110px;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translate(-50%, -50%) scale(0.75) translateY(0) rotateX(0deg) rotateY(0deg); }
+        25% { transform: translate(-50%, -50%) scale(0.75) translateY(-15px) rotateX(3deg) rotateY(10deg); }
+        75% { transform: translate(-50%, -50%) scale(0.75) translateY(8px) rotateX(-3deg) rotateY(-10deg); }
+    }
+    
+    /* Hey Sociail Text - Mobile */
+    .hey-sociail-text {
+        top: 20%;
+        font-size: 24px;
+    }
+    
+    /* Concentric Circles - Optimized for Mobile */
+    .concentric-circles {
+        top: 45%;
+        width: 120vw;
+        height: 120vw;
+        max-width: 800px;
+        max-height: 800px;
+    }
+    
+    .circle:nth-child(1) {
+        min-width: 150px;
+        min-height: 150px;
+    }
+    
+    .circle:nth-child(2) {
+        min-width: 200px;
+        min-height: 200px;
+    }
+    
+    .circle:nth-child(3) {
+        min-width: 250px;
+        min-height: 250px;
+    }
+    
+    .circle:nth-child(4) {
+        min-width: 300px;
+        min-height: 300px;
+    }
+    
+    .circle:nth-child(5) {
+        min-width: 350px;
+        min-height: 350px;
+    }
+    
+    /* Keep ecosystem devices but make them smaller */
+    .ecosystem-device {
+        opacity: 0.4;
+    }
+    
+    .iphone-silhouette {
+        width: 80px;
+        height: 160px;
+        left: -30px;
+    }
+    
+    .laptop-silhouette {
+        width: 180px;
+        height: 120px;
+        right: -90px;
+    }
+    
+    /* Ticker Optimization */
+    .ticker-item {
+        font-size: 13px;
+        padding: 0 15px;
+    }
+    
+    .ticker-content {
+        animation-duration: 25s;
+    }
+    
+    /* Features Section */
+    .section-title {
+        font-size: 32px;
+        margin-bottom: 40px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .feature-card {
+        padding: 30px 20px;
+    }
+    
+    /* Value Prop Grid - Stack on Mobile */
+    .features-content > div:first-of-type {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    /* Use Case Grid */
+    .features-content > div:nth-of-type(3) > div {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    /* Trust & Privacy Grid */
+    .feature-card > div:last-child {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    /* Spaces Section */
+    .spaces-demo {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .spaces-visual {
+        height: 300px;
+        order: 2;
+    }
+    
+    .spaces-info {
+        order: 1;
+    }
+    
+    .spaces-info h3 {
+        font-size: 28px;
+    }
+    
+    .spaces-info p {
+        font-size: 18px;
+    }
+    
+    /* CTA Section */
+    .cta h2 {
+        font-size: 28px;
+    }
+    
+    .cta p {
+        font-size: 18px;
+    }
+    
+    /* Pricing Grid - Stack on Mobile */
+    .cta-content > div:nth-of-type(2) {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+        max-width: 400px !important;
+    }
+    
+    /* Email Form */
+    .email-form {
+        flex-direction: column;
+        gap: 15px;
+        max-width: 400px;
+    }
+    
+    .email-input {
+        padding: 14px 16px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .notify-btn {
+        padding: 14px 20px;
+        font-size: 16px;
+    }
+}
+
+/* Small Mobile Devices */
+@media (max-width: 480px) {
+    /* Extra small screens */
+    h1 {
+        font-size: 28px;
+    }
+    
+    .hero-subtitle {
+        font-size: 18px;
+    }
+    
+    .device-section {
+        min-height: 350px;
+    }
+    
+    .hey-sociail-text {
+        font-size: 20px;
+        top: 18%;
+    }
+    
+    .device-float {
+        transform: translate(-50%, -50%) scale(0.65);
+        width: 240px;
+        height: 95px;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translate(-50%, -50%) scale(0.65) translateY(0) rotateX(0deg) rotateY(0deg); }
+        25% { transform: translate(-50%, -50%) scale(0.65) translateY(-12px) rotateX(2deg) rotateY(8deg); }
+        75% { transform: translate(-50%, -50%) scale(0.65) translateY(6px) rotateX(-2deg) rotateY(-8deg); }
+    }
+    
+    .concentric-circles {
+        top: 47%;
+        width: 100vw;
+        height: 100vw;
+        max-width: 600px;
+        max-height: 600px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .nav-links {
+        gap: 15px;
+    }
+    
+    .nav-links a {
+        font-size: 12px;
+    }
+}
+
+/* Landscape Mobile Optimization */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+    }
+    
+    .device-section {
+        min-height: 300px;
+        padding: 5px 0 20px 0;
+    }
+    
+    .device-float {
+        transform: translate(-50%, -50%) scale(0.6);
+    }
+    
+    .concentric-circles {
+        top: 40%;
+    }
+}

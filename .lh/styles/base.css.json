@@ -1,0 +1,22 @@
+{
+    "sourceFile": "styles/base.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1748955538384,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1748956119801,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,8 +65,12 @@\n [data-theme=\"dark\"] .feature-card {\n     background: var(--bg-secondary);\n }\n \n+[data-theme=\"light\"] .feature-card {\n+    background: white;\n+}\n+\n .feature-card:hover {\n     transform: translateY(-5px);\n     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);\n }\n"
+                }
+            ],
+            "date": 1748955538384,
+            "name": "Commit-0",
+            "content": "/* Base Styles and Reset */\n* {\n    margin: 0;\n    padding: 0;\n    box-sizing: border-box;\n}\n\nbody {\n    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n    color: var(--text-primary);\n    background: var(--bg-primary);\n    line-height: 1.47059;\n    font-weight: 400;\n    letter-spacing: -0.022em;\n    overflow-x: hidden;\n}\n\n/* Typography */\nh1 {\n    font-size: 56px;\n    line-height: 1.07143;\n    font-weight: 600;\n    letter-spacing: -0.005em;\n    margin-bottom: 20px;\n}\n\n.gradient-text {\n    background: linear-gradient(135deg, var(--sociail-yellow), var(--sociail-blue));\n    -webkit-background-clip: text;\n    -webkit-text-fill-color: transparent;\n}\n\n.hero-subtitle {\n    font-size: 28px;\n    line-height: 1.14286;\n    font-weight: 400;\n    letter-spacing: 0.007em;\n    color: var(--text-secondary);\n    margin-bottom: 40px;\n}\n\n.section-title {\n    font-size: 48px;\n    font-weight: 600;\n    text-align: center;\n    margin-bottom: 60px;\n}\n\n/* Common Components */\n.feature-card {\n    background: white;\n    border-radius: 18px;\n    padding: 40px 30px;\n    text-align: center;\n    transition: transform 0.3s ease, box-shadow 0.3s ease;\n    border: 1px solid var(--border-color);\n}\n\n@media (prefers-color-scheme: dark) {\n    .feature-card {\n        background: var(--bg-secondary);\n    }\n}\n\n[data-theme=\"dark\"] .feature-card {\n    background: var(--bg-secondary);\n}\n\n.feature-card:hover {\n    transform: translateY(-5px);\n    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);\n}\n\n@media (prefers-color-scheme: dark) {\n    .feature-card:hover {\n        box-shadow: 0 12px 24px rgba(255, 255, 255, 0.1);\n    }\n}\n\n[data-theme=\"dark\"] .feature-card:hover {\n    box-shadow: 0 12px 24px rgba(255, 255, 255, 0.1);\n}\n\n.coming-soon-badge {\n    display: inline-block;\n    background: linear-gradient(135deg, var(--sociail-yellow), var(--sociail-blue));\n    color: white;\n    padding: 8px 20px;\n    border-radius: 100px;\n    font-size: 14px;\n    font-weight: 600;\n    margin-bottom: 20px;\n    letter-spacing: 0.5px;\n}\n"
+        }
+    ]
+}

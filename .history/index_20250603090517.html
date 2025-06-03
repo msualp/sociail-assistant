@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sociail Assistant - Your Sociail Intelligence, Everywhere You Go</title>
+    
+    <!-- CSS Modules -->
+    <link rel="stylesheet" href="styles/variables.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/navigation.css">
+    <link rel="stylesheet" href="styles/hero.css">
+    <link rel="stylesheet" href="styles/device.css">
+    <link rel="stylesheet" href="styles/sections.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="https://sociail-website-dev-v2.vercel.app/" class="logo">
+                <span class="logo-badge">SOCI<span>AI</span>L</span>
+            </a>
+            <div class="theme-toggle">
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#spaces">Spaces</a></li>
+                    <li><a href="#notify">Get Notified</a></li>
+                </ul>
+                <button class="theme-switch" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="coming-soon-badge">COMING FALL 2026</span>
+            <h1><span class="gradient-text">Sociail Assistant</span></h1>
+            <h3 style="font-size: 32px; font-weight: 500; margin-bottom: 20px; color: var(--text-primary);">Your Sociail intelligence, everywhere you go</h3>
+            <p class="hero-subtitle">The first AI companion that switches contexts as fast as you do. Work conversations stay at work. Personal stays personal.</p>
+            <p style="font-size: 21px; color: var(--text-secondary); margin-top: 20px; font-weight: 500;">All powered by your iPhone.</p>
+        </div>
+
+        <!-- Top Ticker -->
+        <div class="ticker-container" style="position: relative; margin: 10px 0 0 0;">
+            <div class="ticker-content">
+                <span class="ticker-item work">"Schedule team standup for tomorrow at 9am"</span>
+                <span class="ticker-item personal">"Find the best Italian restaurant near me"</span>
+                <span class="ticker-item">"What's the torque spec for a 2019 Honda Civic"</span>
+                <span class="ticker-item family">"Add milk and eggs to the grocery list"</span>
+                <span class="ticker-item creative">"Help me brainstorm names for my new podcast"</span>
+                <span class="ticker-item work">"Summarize the product roadmap discussion"</span>
+                <span class="ticker-item personal">"Track my workout - 30 minute run"</span>
+                <span class="ticker-item">"Convert 2 cups of flour to grams"</span>
+                <span class="ticker-item family">"Remind me to call mom on Sunday"</span>
+                <span class="ticker-item creative">"What rhymes with innovation?"</span>
+                <!-- Duplicate for seamless loop -->
+                <span class="ticker-item work">"Schedule team standup for tomorrow at 9am"</span>
+                <span class="ticker-item personal">"Find the best Italian restaurant near me"</span>
+                <span class="ticker-item">"What's the torque spec for a 2019 Honda Civic"</span>
+                <span class="ticker-item family">"Add milk and eggs to the grocery list"</span>
+                <span class="ticker-item creative">"Help me brainstorm names for my new podcast"</span>
+                <span class="ticker-item work">"Summarize the product roadmap discussion"</span>
+                <span class="ticker-item personal">"Track my workout - 30 minute run"</span>
+                <span class="ticker-item">"Convert 2 cups of flour to grams"</span>
+                <span class="ticker-item family">"Remind me to call mom on Sunday"</span>
+                <span class="ticker-item creative">"What rhymes with innovation?"</span>
+            </div>
+        </div>
+
+        <!-- Device Section -->
+        <div class="device-section">
+            <div class="device-preview">
+                <!-- Concentric Circles Background -->
+                <div class="concentric-circles">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                </div>
+
+                <!-- Ecosystem Device Silhouettes -->
+                <div class="ecosystem-device iphone-silhouette"></div>
+                <div class="ecosystem-device laptop-silhouette">
+                    <div class="laptop-screen"></div>
+                    <div class="laptop-base"></div>
+                </div>
+
+                <div class="device-float">
+                    <div class="device-wrapper">
+                        <div class="device-shadow-layer"></div>
+                        <div class="device-body">
+                            <!-- Device elements -->
+                            <div class="speaker-grille"></div>
+
+                            <div class="device-center">
+                                <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                                    <line x1="8" y1="23" x2="16" y2="23"></line>
+                                </svg>
+                            </div>
+
+                            <div class="device-indicators">
+                                <div class="indicator-dot active" style="animation: aiSpeaking 20s ease-in-out infinite; animation-delay: 0.5s;"></div>
+                                <div class="indicator-dot"></div>
+                                <div class="indicator-dot"></div>
+                            </div>
+
+                            <div class="device-mute"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Ticker -->
+                <div class="ticker-container ticker-bottom">
+                    <div class="ticker-content">
+                        <span class="ticker-item personal">"Use Personal Space"</span>
+                        <span class="ticker-item">"What's the weather like tomorrow?"</span>
+                        <span class="ticker-item work">"Draft an email to the marketing team"</span>
+                        <span class="ticker-item family">"Set a timer for 25 minutes"</span>
+                        <span class="ticker-item">"Explain quantum computing in simple terms"</span>
+                        <span class="ticker-item personal">"Find toys for a 2 year old"</span>
+                        <span class="ticker-item creative">"Give me a recipe using chicken and rice"</span>
+                        <span class="ticker-item work">"What were the action items from today's meeting?"</span>
+                        <span class="ticker-item">"Calculate tip for $47.50"</span>
+                        <span class="ticker-item family">"Play some relaxing music"</span>
+                        <!-- Duplicate for seamless loop -->
+                        <span class="ticker-item personal">"Use Personal Space"</span>
+                        <span class="ticker-item">"What's the weather like tomorrow?"</span>
+                        <span class="ticker-item work">"Draft an email to the marketing team"</span>
+                        <span class="ticker-item family">"Set a timer for 25 minutes"</span>
+                        <span class="ticker-item">"Explain quantum computing in simple terms"</span>
+                        <span class="ticker-item personal">"Find toys for a 2 year old"</span>
+                        <span class="ticker-item creative">"Give me a recipe using chicken and rice"</span>
+                        <span class="ticker-item work">"What were the action items from today's meeting?"</span>
+                        <span class="ticker-item">"Calculate tip for $47.50"</span>
+                        <span class="ticker-item family">"Play some relaxing music"</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-content">
+            <h2 class="section-title">Designed for Life in Motion</h2>
+            
+            <!-- Value Prop Grid -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 60px;">
+                <div class="feature-card" style="text-align: center; padding: 30px;">
+                    <div style="font-size: 32px; margin-bottom: 15px;">🔈</div>
+                    <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">50 ft Far-Field Audio</h4>
+                    <p style="font-size: 15px; color: var(--text-secondary);">Capture crystal-clear commands—even over power-tools or road noise.</p>
+                </div>
+                <div class="feature-card" style="text-align: center; padding: 30px;">
+                    <div style="font-size: 32px; margin-bottom: 15px;">🌈</div>
+                    <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">Live Status Ring</h4>
+                    <p style="font-size: 15px; color: var(--text-secondary);">See "Ready, Listening, Thinking, Speaking" at a glance.</p>
+                </div>
+                <div class="feature-card" style="text-align: center; padding: 30px;">
+                    <div style="font-size: 32px; margin-bottom: 15px;">🔋</div>
+                    <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">All-Day Battery</h4>
+                    <p style="font-size: 15px; color: var(--text-secondary);">12 hrs active / 48 hrs standby keeps pace with your shift.</p>
+                </div>
+            </div>
+            
+            <!-- Lean-Forward Copy -->
+            <div style="text-align: center; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <h3 style="font-size: 32px; font-weight: 600; margin-bottom: 20px;">From lean-forward to lean-back—seamless context switching</h3>
+                <p style="font-size: 19px; color: var(--text-secondary); line-height: 1.5;">Start a feature idea while driving, continue when you get to your desk, and share with your team. Sociail Assistant extends your digital intelligence into physical spaces while keeping work and personal conversations completely separate.</p>
+            </div>
+            
+            <!-- Use Case Carousel -->
+            <div style="background: var(--bg-secondary); border-radius: 18px; padding: 40px; margin-bottom: 60px;">
+                <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 30px; text-align: center;">Built for Every Environment</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px;">
+                    <div style="display: flex; align-items: flex-start; gap: 15px;">
+                        <span style="font-size: 24px;">🛠</span>
+                        <div>
+                            <strong>Workshop</strong><br>
+                            <span style="color: var(--text-secondary); font-size: 15px;">"Hey Sociail, torque spec for M8 bolts."</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 15px;">
+                        <span style="font-size: 24px;">🚗</span>
+                        <div>
+                            <strong>Commute</strong><br>
+                            <span style="color: var(--text-secondary); font-size: 15px;">"Summarize today's stand-up in 30 seconds."</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 15px;">
+                        <span style="font-size: 24px;">👩‍🍳</span>
+                        <div>
+                            <strong>Kitchen</strong><br>
+                            <span style="color: var(--text-secondary); font-size: 15px;">"Set a 3-minute sear timer—hands messy!"</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 15px;">
+                        <span style="font-size: 24px;">🦺</span>
+                        <div>
+                            <strong>Fieldwork</strong><br>
+                            <span style="color: var(--text-secondary); font-size: 15px;">"Log GPS + photo, label 'Site B hazard'."</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Trust & Privacy Blurb -->
+            <div class="feature-card" style="padding: 40px; margin-bottom: 60px;">
+                <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 20px; text-align: center;">Built for the planet and your privacy</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: center;">
+                    <div>
+                        <div style="color: #34c759; font-size: 20px; margin-bottom: 10px;">♻️</div>
+                        <p style="font-size: 15px; color: var(--text-secondary);">65% recycled materials, replaceable battery</p>
+                    </div>
+                    <div>
+                        <div style="color: var(--sociail-blue); font-size: 20px; margin-bottom: 10px;">📱</div>
+                        <p style="font-size: 15px; color: var(--text-secondary);">iPhone-powered: simple, affordable, always updated</p>
+                    </div>
+                    <div>
+                        <div style="color: #ff3b30; font-size: 20px; margin-bottom: 10px;">🔒</div>
+                        <p style="font-size: 15px; color: var(--text-secondary);">Hardware mute switch, on-device wake word</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">
+                rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to top, 
+                rgba(0,0,0,1) 0%, 
+                rgba(0,0,0,1) 85%, 
+                rgba(0,0,0,0.8) 92%, 
+                rgba(0,0,0,0) 100%);
+        }
+
+        .device-preview {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+        }
+
+        /* Concentric Circles Background */
+        .concentric-circles {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150vw;
+            height: 150vw;
+            max-width: 1400px;
+            max-height: 1400px;
+            pointer-events: none;
+            z-index: 0;
+            animation: circleFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes circleFloat {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            25% { transform: translate(-50%, -50%) translateY(-20px); }
+            75% { transform: translate(-50%, -50%) translateY(10px); }
+        }
+
+        .circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px solid;
+            animation: pulse 4s ease-out infinite;
+        }
+
+        .circle:nth-child(1) {
+            width: 20%;
+            height: 20%;
+            min-width: 200px;
+            min-height: 200px;
+            border-color: rgba(134, 134, 139, 0.3);
+            animation-delay: 0s;
+        }
+
+        .circle:nth-child(2) {
+            width: 35%;
+            height: 35%;
+            min-width: 300px;
+            min-height: 300px;
+            border-color: rgba(134, 134, 139, 0.25);
+            animation-delay: 0.5s;
+        }
+
+        .circle:nth-child(3) {
+            width: 50%;
+            height: 50%;
+            min-width: 400px;
+            min-height: 400px;
+            border-color: rgba(134, 134, 139, 0.2);
+            animation-delay: 1s;
+        }
+
+        .circle:nth-child(4) {
+            width: 65%;
+            height: 65%;
+            min-width: 500px;
+            min-height: 500px;
+            border-color: rgba(134, 134, 139, 0.15);
+            animation-delay: 1.5s;
+        }
+
+        .circle:nth-child(5) {
+            width: 80%;
+            height: 80%;
+            min-width: 600px;
+            min-height: 600px;
+            border-color: rgba(134, 134, 139, 0.1);
+            animation-delay: 2s;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+
+        /* Ecosystem Device Silhouettes */
+        .ecosystem-device {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.6; /* added transparency */
+        }
+
+        /* iPhone Silhouette */
+        .iphone-silhouette {
+            left: -50px;
+            top: 30%;
+            transform: translateY(-50%) rotate(-8deg);
+            width: 140px;
+            height: 280px;
+            background: #c4c4c9;
+            border-radius: 24px;
+            box-shadow:
+                inset 0 0 0 10px #d1d1d6,
+                inset 0 0 0 12px #c4c4c9;
+        }
+
+        .iphone-silhouette::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: #d1d1d6;
+            border-radius: 2px;
+        }
+
+        .iphone-silhouette::after {
+            content: '';
+            position: absolute;
+            top: 35px;
+            left: 18px;
+            right: 18px;
+            bottom: 35px;
+            background: var(--screen-color);
+            border-radius: 4px;
+            opacity: 1; /* fully opaque */
+        }
+
+        /* Laptop Silhouette */
+        .laptop-silhouette {
+            right: -160px;
+            top: 30%;
+            transform: translateY(-50%) rotate(8deg);
+            width: 320px;
+            height: 200px;
+        }
+
+        .laptop-screen {
+            width: 100%;
+            height: 180px;
+            background: #c4c4c9;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: inset 0 0 0 10px #d1d1d6;
+        }
+
+        .laptop-screen::after {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            right: 18px;
+            bottom: 18px;
+            background: var(--screen-color);
+            border-radius: 4px;
+            opacity: 1; /* fully opaque */
+        }
+
+        .laptop-base {
+            width: 120%;
+            height: 10px;
+            background: #c4c4c9;
+            margin: -2px auto 0;
+            border-radius: 0 0 6px 6px;
+            position: relative;
+            left: -10%;
+        }
+
+        .laptop-base::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: #d1d1d6;
+            border-radius: 1px;
+        }
+
+        /* Override inherited opacity so screens stay solid */
+        .ecosystem-device { opacity: 0.6 !important; }
+
+        /* Ticker Tape Styles */
+        .ticker-container {
+            position: absolute;
+            width: 100%;
+            overflow: hidden;
+            opacity: 0.6;
+        }
+
+        .ticker-bottom {
+            bottom: 10%;
+        }
+
+        .ticker-content {
+            display: flex;
+            white-space: nowrap;
+            animation: scroll 30s linear infinite;
+        }
+
+        .ticker-bottom .ticker-content {
+            animation: scrollReverse 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scrollReverse {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .ticker-item {
+            padding: 0 40px;
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-family: 'SF Mono', Monaco, monospace;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ticker-item::before {
+            content: "•";
+            color: var(--sociail-yellow);
+            font-weight: bold;
+        }
+
+        .ticker-item.work {
+            color: var(--sociail-blue);
+        }
+
+        .ticker-item.personal {
+            color: #d4a017;
+        }
+
+        .ticker-item.family {
+            color: #34c759;
+        }
+
+        .ticker-item.creative {
+            color: #ff3b30;
+        }
+
+        /* 3D Device Styles */
+        .device-float {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 320px;
+            height: 120px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0) rotateX(0deg) rotateY(0deg); }
+            25% { transform: translate(-50%, -50%) translateY(-20px) rotateX(5deg) rotateY(15deg); }
+            75% { transform: translate(-50%, -50%) translateY(10px) rotateX(-5deg) rotateY(-15deg); }
+        }
+
+        /* AI Speech Visualization Animation */
+        @keyframes aiSpeaking {
+            0%, 30%, 100% { opacity: 1; }
+            /* "So" syllable - stronger, longer */
+            40% { opacity: 0.3; }
+            40.2% { opacity: 0.8; }
+            40.4% { opacity: 0.4; }
+            40.6% { opacity: 0.9; }
+            40.8% { opacity: 0.5; }
+            41% { opacity: 1; }
+            41.2% { opacity: 0.6; }
+            41.4% { opacity: 0.9; }
+            41.6% { opacity: 0.7; }
+            41.8% { opacity: 1; }
+            /* Brief pause between syllables */
+            42%, 42.5% { opacity: 1; }
+            /* "cial" syllable - softer, quicker */
+            42.6% { opacity: 0.5; }
+            42.7% { opacity: 0.8; }
+            42.8% { opacity: 0.6; }
+            42.9% { opacity: 0.9; }
+            43% { opacity: 0.4; }
+            43.1% { opacity: 0.7; }
+            43.2% { opacity: 0.5; }
+            43.3% { opacity: 0.8; }
+            43.4% { opacity: 0.6; }
+            43.5% { opacity: 1; }
+            /* Natural pause before "Assistant" */
+            43.6%, 45% { opacity: 1; }
+            /* "A" syllable */
+            45.1% { opacity: 0.4; }
+            45.2% { opacity: 0.7; }
+            45.3% { opacity: 0.5; }
+            45.4% { opacity: 0.9; }
+            45.5% { opacity: 1; }
+            /* "ssis" syllable */
+            45.6% { opacity: 0.5; }
+            45.7% { opacity: 0.8; }
+            45.8% { opacity: 0.4; }
+            45.9% { opacity: 0.7; }
+            46% { opacity: 0.6; }
+            46.1% { opacity: 0.9; }
+            46.2% { opacity: 0.5; }
+            46.3% { opacity: 0.8; }
+            46.4% { opacity: 1; }
+            /* "tant" syllable */
+            46.5% { opacity: 0.6; }
+            46.6% { opacity: 0.8; }
+            46.7% { opacity: 0.4; }
+            46.8% { opacity: 0.7; }
+            46.9% { opacity: 0.5; }
+            47% { opacity: 0.9; }
+            47.1% { opacity: 0.6; }
+            47.2% { opacity: 1; }
+            /* Normal until next burst */
+            47.3%, 70% { opacity: 1; }
+            /* Second pronunciation - slightly different pattern */
+            75% { opacity: 0.4; }
+            75.2% { opacity: 0.9; }
+            75.4% { opacity: 0.3; }
+            75.6% { opacity: 0.8; }
+            75.8% { opacity: 0.5; }
+            76% { opacity: 1; }
+            76.2% { opacity: 0.7; }
+            76.4% { opacity: 0.9; }
+            /* Pause */
+            76.6%, 77% { opacity: 1; }
+            /* "cial" */
+            77.1% { opacity: 0.6; }
+            77.2% { opacity: 0.8; }
+            77.3% { opacity: 0.4; }
+            77.4% { opacity: 0.7; }
+            77.5% { opacity: 0.5; }
+            77.6% { opacity: 0.9; }
+            77.7% { opacity: 0.6; }
+            77.8% { opacity: 1; }
+            /* Pause before "Assistant" */
+            77.9%, 79% { opacity: 1; }
+            /* "Assistant" - compressed */
+            79.1% { opacity: 0.5; }
+            79.2% { opacity: 0.8; }
+            79.3% { opacity: 0.6; }
+            79.4% { opacity: 1; }
+            79.5% { opacity: 0.4; }
+            79.6% { opacity: 0.7; }
+            79.7% { opacity: 0.5; }
+            79.8% { opacity: 0.9; }
+            79.9% { opacity: 0.6; }
+            80% { opacity: 0.8; }
+            80.1% { opacity: 0.5; }
+            80.2% { opacity: 0.7; }
+            80.3% { opacity: 0.6; }
+            80.4% { opacity: 1; }
+        }
+
+        /* Apply to screens with long duration for infrequent effect */
+        .iphone-silhouette::after,
+        .laptop-screen::after {
+            animation: aiSpeaking 20s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        .device-wrapper {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        /* Dark shadow layer that appears behind */
+        .device-shadow-layer {
+            position: absolute;
+            top: 12px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #d4a017 0%, #b8901e 50%, #9c7a1a 100%);
+            border-radius: 60px;
+            z-index: 0;
+        }
+
+        .device-body {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #f9d949 0%, #e5c534 100%);
+            border-radius: 60px;
+            box-shadow:
+                0 50px 100px rgba(0, 0, 0, 0.3),
+                0 30px 60px rgba(0, 0, 0, 0.2),
+                0 20px 40px rgba(249, 217, 73, 0.4),
+                inset 0 2px 4px rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* Shadow beneath device */
+        .device-wrapper::after {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: 10%;
+            right: 10%;
+            height: 40px;
+            background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.3) 0%, transparent 70%);
+            filter: blur(20px);
+            z-index: -1;
+        }
+
+        /* Device elements */
+        .speaker-grille {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            width: 100px;
+            height: 60px;
+            background: repeating-linear-gradient(
+                0deg,
+                #d4a017 0px,
+                #d4a017 2px,
+                transparent 2px,
+                transparent 4px
+            );
+            border-radius: 30px;
+            opacity: 0.6;
+        }
+
+        .device-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: radial-gradient(circle at 30% 30%, #0066ff 0%, #0052cc 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow:
+                inset 0 -3px 6px rgba(0, 0, 0, 0.3),
+                inset 0 3px 6px rgba(255, 255, 255, 0.2),
+                0 0 30px rgba(0, 102, 255, 0.6);
+            border: 3px solid #0052cc;
+            animation: aiSpeaking 20s ease-in-out infinite;
+            animation-delay: 0.5s;
+        }
+
+        .device-indicators {
+            position: absolute;
+            top: 50%;
+            right: 90px;
+            transform: translateY(-50%);
+            display: flex;
+            gap: 8px;
+        }
+
+        .indicator-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .indicator-dot.active {
+            background: #00ff00;
+            box-shadow: 0 0 6px #00ff00;
+        }
+
+        .device-mute {
+            position: absolute;
+            top: 50%;
+            right: 30px;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 20px;
+            background: #d4a017;
+            border-radius: 10px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .device-mute::after {
+            content: '';
+            position: absolute;
+            left: 3px;
+            top: 3px;
+            width: 14px;
+            height: 14px;
+            background: #0066ff;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Features Grid */
+        .features {
+            background: var(--bg-secondary);
+            padding: 80px 0;
+        }
+
+        .features-content {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 18px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .feature-card {
+                background: var(--bg-secondary);
+            }
+        }
+
+        [data-theme="dark"] .feature-card {
+            background: var(--bg-secondary);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .feature-card:hover {
+                box-shadow: 0 12px 24px rgba(255, 255, 255, 0.1);
+            }
+        }
+
+        [data-theme="dark"] .feature-card:hover {
+            box-shadow: 0 12px 24px rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            display: block;
+            color: var(--sociail-blue);
+        }
+
+        .feature-title {
+            font-size: 21px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-description {
+            font-size: 17px;
+            line-height: 1.47059;
+            color: var(--text-secondary);
+        }
+
+        /* Spaces Section */
+        .spaces {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .spaces-demo {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 22px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .spaces-visual {
+            position: relative;
+            height: 400px;
+        }
+
+        .space-bubble {
+            position: absolute;
+            border-radius: 20px;
+            padding: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .space-work {
+            top: 20px;
+            left: 0;
+            background: rgba(0, 102, 255, 0.1);
+            border: 2px solid var(--sociail-blue);
+            color: var(--sociail-blue);
+        }
+
+        .space-personal {
+            top: 120px;
+            right: 0;
+            background: rgba(249, 217, 73, 0.1);
+            border: 2px solid var(--sociail-yellow);
+            color: #d4a017;
+        }
+
+        .space-family {
+            bottom: 80px;
+            left: 60px;
+            background: rgba(52, 199, 89, 0.1);
+            border: 2px solid #34c759;
+            color: #34c759;
+        }
+
+        .space-bubble:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .spaces-info h3 {
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .spaces-info p {
+            font-size: 21px;
+            line-height: 1.381;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+        }
+
+        .voice-commands {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 14px;
+        }
+
+        .command {
+            padding: 8px 0;
+            color: var(--sociail-blue);
+        }
+
+        /* Call to Action */
+        .cta {
+            padding: 80px 0;
+            text-align: center;
+            background: var(--bg-secondary);
+        }
+
+        .cta-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        .cta h2 {
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 21px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 12px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 16px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 17px;
+            background: white;
+            color: var(--text-primary);
+            transition: border-color 0.3s;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .email-input {
+                background: var(--bg-secondary);
+            }
+        }
+
+        [data-theme="dark"] .email-input {
+            background: var(--bg-secondary);
+        }
+
+        .email-input:focus {
+            outline: none;
+            border-color: var(--sociail-blue);
+        }
+
+        .notify-btn {
+            padding: 16px 30px;
+            background: var(--sociail-blue);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .notify-btn:hover {
+            background: #0051d5;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .nav-content {
+                padding: 0 16px;
+            }
+            
+            .hero-content {
+                padding: 40px 16px 30px;
+            }
+            
+            .features-content {
+                padding: 0 16px;
+            }
+            
+            .spaces-demo {
+                padding: 0 16px;
+            }
+            
+            .cta-content {
+                padding: 0 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Navigation */
+            .nav-content {
+                padding: 0 16px;
+                height: 44px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .nav-links a {
+                font-size: 13px;
+            }
+            
+            .theme-toggle {
+                gap: 10px;
+            }
+            
+            /* Hero Section */
+            .hero-content {
+                padding: 40px 16px 20px;
+            }
+            
+            .coming-soon-badge {
+                font-size: 12px;
+                padding: 6px 16px;
+                margin-bottom: 16px;
+            }
+            
+            h1 {
+                font-size: 36px;
+                line-height: 1.1;
+                margin-bottom: 16px;
+            }
+            
+            .hero-subtitle {
+                font-size: 20px;
+                line-height: 1.3;
+                margin-bottom: 30px;
+            }
+            
+            /* Enhanced Device Section for Mobile */
+            .device-section {
+                min-height: 400px;
+                padding: 10px 0 30px 0;
+            }
+            
+            .device-preview {
+                min-height: 350px;
+            }
+            
+            /* Optimized Device Animation */
+            .device-float {
+                transform: translate(-50%, -50%) scale(0.75);
+                width: 280px;
+                height: 110px;
+            }
+            
+            @keyframes float {
+                0%, 100% { transform: translate(-50%, -50%) scale(0.75) translateY(0) rotateX(0deg) rotateY(0deg); }
+                25% { transform: translate(-50%, -50%) scale(0.75) translateY(-15px) rotateX(3deg) rotateY(10deg); }
+                75% { transform: translate(-50%, -50%) scale(0.75) translateY(8px) rotateX(-3deg) rotateY(-10deg); }
+            }
+            
+            /* Concentric Circles - Optimized for Mobile */
+            .concentric-circles {
+                top: 35%;
+                width: 120vw;
+                height: 120vw;
+                max-width: 800px;
+                max-height: 800px;
+            }
+            
+            .circle:nth-child(1) {
+                min-width: 150px;
+                min-height: 150px;
+            }
+            
+            .circle:nth-child(2) {
+                min-width: 200px;
+                min-height: 200px;
+            }
+            
+            .circle:nth-child(3) {
+                min-width: 250px;
+                min-height: 250px;
+            }
+            
+            .circle:nth-child(4) {
+                min-width: 300px;
+                min-height: 300px;
+            }
+            
+            .circle:nth-child(5) {
+                min-width: 350px;
+                min-height: 350px;
+            }
+            
+            /* Keep ecosystem devices but make them smaller */
+            .ecosystem-device {
+                opacity: 0.4;
+            }
+            
+            .iphone-silhouette {
+                width: 80px;
+                height: 160px;
+                left: -30px;
+            }
+            
+            .laptop-silhouette {
+                width: 180px;
+                height: 120px;
+                right: -90px;
+            }
+            
+            /* Ticker Optimization */
+            .ticker-item {
+                font-size: 13px;
+                padding: 0 15px;
+            }
+            
+            .ticker-content {
+                animation-duration: 25s;
+            }
+            
+            /* Features Section */
+            .section-title {
+                font-size: 32px;
+                margin-bottom: 40px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .feature-card {
+                padding: 30px 20px;
+            }
+            
+            /* Value Prop Grid - Stack on Mobile */
+            .features-content > div:first-of-type {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            
+            /* Use Case Grid */
+            .features-content > div:nth-of-type(3) > div {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            
+            /* Trust & Privacy Grid */
+            .feature-card > div:last-child {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+            
+            /* Spaces Section */
+            .spaces-demo {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .spaces-visual {
+                height: 300px;
+                order: 2;
+            }
+            
+            .spaces-info {
+                order: 1;
+            }
+            
+            .spaces-info h3 {
+                font-size: 28px;
+            }
+            
+            .spaces-info p {
+                font-size: 18px;
+            }
+            
+            /* CTA Section */
+            .cta h2 {
+                font-size: 28px;
+            }
+            
+            .cta p {
+                font-size: 18px;
+            }
+            
+            /* Pricing Grid - Stack on Mobile */
+            .cta-content > div:nth-of-type(2) {
+                grid-template-columns: 1fr !important;
+                gap: 15px !important;
+                max-width: 400px !important;
+            }
+            
+            /* Email Form */
+            .email-form {
+                flex-direction: column;
+                gap: 15px;
+                max-width: 400px;
+            }
+            
+            .email-input {
+                padding: 14px 16px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            .notify-btn {
+                padding: 14px 20px;
+                font-size: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Extra small screens */
+            h1 {
+                font-size: 28px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .device-section {
+                min-height: 350px;
+            }
+            
+            .device-float {
+                transform: translate(-50%, -50%) scale(0.65);
+                width: 240px;
+                height: 95px;
+            }
+            
+            @keyframes float {
+                0%, 100% { transform: translate(-50%, -50%) scale(0.65) translateY(0) rotateX(0deg) rotateY(0deg); }
+                25% { transform: translate(-50%, -50%) scale(0.65) translateY(-12px) rotateX(2deg) rotateY(8deg); }
+                75% { transform: translate(-50%, -50%) scale(0.65) translateY(6px) rotateX(-2deg) rotateY(-8deg); }
+            }
+            
+            .concentric-circles {
+                width: 100vw;
+                height: 100vw;
+                max-width: 600px;
+                max-height: 600px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-links a {
+                font-size: 12px;
+            }
+        }
+        
+        /* Landscape Mobile Optimization */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero {
+                min-height: 100vh;
+            }
+            
+            .device-section {
+                min-height: 300px;
+                padding: 5px 0 20px 0;
+            }
+            
+            .device-float {
+                transform: translate(-50%, -50%) scale(0.6);
+            }
+            
+            .concentric-circles {
+                top: 40%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="https://sociail-website-dev-v2.vercel.app/" class="logo">
+                <span class="logo-badge">SOCI<span>AI</span>L</span>
+            </a>
+            <div class="theme-toggle">
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#spaces">Spaces</a></li>
+                    <li><a href="#notify">Get Notified</a></li>
+                </ul>
+                <button class="theme-switch" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="coming-soon-badge">COMING FALL 2026</span>
+            <h1><span class="gradient-text">Sociail Assistant</span></h1>
+            <h3 style="font-size: 32px; font-weight: 500; margin-bottom: 20px; color: var(--text-primary);">Your Sociail intelligence, everywhere you go</h3>
+            <p class="hero-subtitle">The first AI companion that switches contexts as fast as you do. Work conversations stay at work. Personal stays personal.</p>
+            <p style="font-size: 21px; color: var(--text-secondary); margin-top: 20px; font-weight: 500;">All powered by your iPhone.</p>
+        </div>
+
+        <!-- Top Ticker -->
+        <div class="ticker-container" style="position: relative; margin: 10px 0 0 0;">
+            <div class="ticker-content">
+                <span class="ticker-item work">"Schedule team standup for tomorrow at 9am"</span>
+                <span class="ticker-item personal">"Find the best Italian restaurant near me"</span>
+                <span class="ticker-item">"What's the torque spec for a 2019 Honda Civic"</span>
+                <span class="ticker-item family">"Add milk and eggs to the grocery list"</span>
+                <span class="ticker-item creative">"Help me brainstorm names for my new podcast"</span>
+                <span class="ticker-item work">"Summarize the product roadmap discussion"</span>
+                <span class="ticker-item personal">"Track my workout - 30 minute run"</span>
+                <span class="ticker-item">"Convert 2 cups of flour to grams"</span>
+                <span class="ticker-item family">"Remind me to call mom on Sunday"</span>
+                <span class="ticker-item creative">"What rhymes with innovation?"</span>
+                <!-- Duplicate for seamless loop -->
+                <span class="ticker-item work">"Schedule team standup for tomorrow at 9am"</span>
+                <span class="ticker-item personal">"Find the best Italian restaurant near me"</span>
+                <span class="ticker-item">"What's the torque spec for a 2019 Honda Civic"</span>
+                <span class="ticker-item family">"Add milk and eggs to the grocery list"</span>
+                <span class="ticker-item creative">"Help me brainstorm names for my new podcast"</span>
+                <span class="ticker-item work">"Summarize the product roadmap discussion"</span>
+                <span class="ticker-item personal">"Track my workout - 30 minute run"</span>
+                <span class="ticker-item">"Convert 2 cups of flour to grams"</span>
+                <span class="ticker-item family">"Remind me to call mom on Sunday"</span>
+                <span class="ticker-item creative">"What rhymes with innovation?"</span>
+            </div>
+        </div>
+
+        <!-- Device Section -->
+        <div class="device-section">
+            <div class="device-preview">
+                <!-- Concentric Circles Background -->
+                <div class="concentric-circles">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                </div>
+
+                <!-- Ecosystem Device Silhouettes -->
+                <div class="ecosystem-device iphone-silhouette"></div>
+                <div class="ecosystem-device laptop-silhouette">
+                    <div class="laptop-screen"></div>
+                    <div class="laptop-base"></div>
+                </div>
+
+                <div class="device-float">
+                    <div class="device-wrapper">
+                        <div class="device-shadow-layer"></div>
+                        <div class="device-body">
+                            <!-- Device elements -->
+                            <div class="speaker-grille"></div>
+
+                            <div class="device-center">
+                                <svg width="35" height="35" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+                                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                    <line x1="12" y1="19" x2="12" y2="23"></line>
+                                    <line x1="8" y1="23" x2="16" y2="23"></line>
+                                </svg>
+                            </div>
+
+                            <div class="device-indicators">
+                                <div class="indicator-dot active" style="animation: aiSpeaking 20s ease-in-out infinite; animation-delay: 0.5s;"></div>
+                                <div class="indicator-dot"></div>
+                                <div class="indicator-dot"></div>
+                            </div>
+
+                            <div class="device-mute"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Ticker -->
+                <div class="ticker-container ticker-bottom">
+                    <div class="ticker-content">
+                        <span class="ticker-item personal">"Use Personal Space"</span>
+                        <span class="ticker-item">"What's the weather like tomorrow?"</span>
+                        <span class="ticker-item work">"Draft an email to the marketing team"</span>
+                        <span class="ticker-item family">"Set a timer for 25 minutes"</span>
+                        <span class="ticker-item">"Explain quantum computing in simple terms"</span>
+                        <span class="ticker-item personal">"Find toys for a 2 year old"</span>
+                        <span class="ticker-item creative">"Give me a recipe using chicken and rice"</span>
+                        <span class="ticker-item work">"What were the action items from today's meeting?"</span>
+                        <span class="ticker-item">"Calculate tip for $47.50"</span>
+                        <span class="ticker-item family">"Play some relaxing music"</span>
+                        <!-- Duplicate for seamless loop -->
+                        <span class="ticker-item personal">"Use Personal Space"</span>
+                        <span class="ticker-item">"What's the weather like tomorrow?"</span>
+                        <span class="ticker-item work">"Draft an email to the marketing team"</span>
+                        <span class="ticker-item family">"Set a timer for 25 minutes"</span>
+                        <span class="ticker-item">"Explain quantum computing in simple terms"</span>
+                        <span class="ticker-item personal">"Find toys for a 2 year old"</span>
+                        <span class="ticker-item creative">"Give me a recipe using chicken and rice"</span>
+                        <span class="ticker-item work">"What were the action items from today's meeting?"</span>
+                        <span class="ticker-item">"Calculate tip for $47.50"</span>
+                        <span class="ticker-item family">"Play some relaxing music"</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="features-content">
+            <h2 class="section-title">Designed for Life in Motion</h2>
+            
+            <!-- Value Prop Grid -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 60px;">
+                <div class="feature-card" style="text-align: center; padding: 30px;">
+                    <div style="font-size: 32px; margin-bottom: 15px;">🔈</div>
+                    <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">50 ft Far-Field Audio</h4>
+                    <p style="font-size: 15px; color: var(--text-secondary);">Capture crystal-clear commands—even over power-tools or road noise.</p>
+                </div>
+                <div class="feature-card" style="text-align: center; padding: 30px;">
+                    <div style="font-size: 32px; margin-bottom: 15px;">🌈</div>
+                    <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">Live Status Ring</h4>
+                    <p style="font-size: 15px; color: var(--text-secondary);">See "Ready, Listening, Thinking, Speaking" at a glance.</p>
+                </div>
+                <div class="feature-card" style="text-align: center; padding: 30px;">
+                    <div style="font-size: 32px; margin-bottom: 15px;">🔋</div>
+                    <h4 style="font-size: 18px; font-weight: 600; margin-bottom: 10px;">All-Day Battery</h4>
+                    <p style="font-size: 15px; color: var(--text-secondary);">12 hrs active / 48 hrs standby keeps pace with your shift.</p>
+                </div>
+            </div>
+            
+            <!-- Lean-Forward Copy -->
+            <div style="text-align: center; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <h3 style="font-size: 32px; font-weight: 600; margin-bottom: 20px;">From lean-forward to lean-back—seamless context switching</h3>
+                <p style="font-size: 19px; color: var(--text-secondary); line-height: 1.5;">Start a feature idea while driving, continue when you get to your desk, and share with your team. Sociail Assistant extends your digital intelligence into physical spaces while keeping work and personal conversations completely separate.</p>
+            </div>
+            
+            <!-- Use Case Carousel -->
+            <div style="background: var(--bg-secondary); border-radius: 18px; padding: 40px; margin-bottom: 60px;">
+                <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 30px; text-align: center;">Built for Every Environment</h3>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px;">
+                    <div style="display: flex; align-items: flex-start; gap: 15px;">
+                        <span style="font-size: 24px;">🛠</span>
+                        <div>
+                            <strong>Workshop</strong><br>
+                            <span style="color: var(--text-secondary); font-size: 15px;">"Hey Sociail, torque spec for M8 bolts."</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 15px;">
+                        <span style="font-size: 24px;">🚗</span>
+                        <div>
+                            <strong>Commute</strong><br>
+                            <span style="color: var(--text-secondary); font-size: 15px;">"Summarize today's stand-up in 30 seconds."</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 15px;">
+                        <span style="font-size: 24px;">👩‍🍳</span>
+                        <div>
+                            <strong>Kitchen</strong><br>
+                            <span style="color: var(--text-secondary); font-size: 15px;">"Set a 3-minute sear timer—hands messy!"</span>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 15px;">
+                        <span style="font-size: 24px;">🦺</span>
+                        <div>
+                            <strong>Fieldwork</strong><br>
+                            <span style="color: var(--text-secondary); font-size: 15px;">"Log GPS + photo, label 'Site B hazard'."</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Trust & Privacy Blurb -->
+            <div class="feature-card" style="padding: 40px; margin-bottom: 60px;">
+                <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 20px; text-align: center;">Built for the planet and your privacy</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: center;">
+                    <div>
+                        <div style="color: #34c759; font-size: 20px; margin-bottom: 10px;">♻️</div>
+                        <p style="font-size: 15px; color: var(--text-secondary);">65% recycled materials, replaceable battery</p>
+                    </div>
+                    <div>
+                        <div style="color: var(--sociail-blue); font-size: 20px; margin-bottom: 10px;">📱</div>
+                        <p style="font-size: 15px; color: var(--text-secondary);">iPhone-powered: simple, affordable, always updated</p>
+                    </div>
+                    <div>
+                        <div style="color: #ff3b30; font-size: 20px; margin-bottom: 10px;">🔒</div>
+                        <p style="font-size: 15px; color: var(--text-secondary);">Hardware mute switch, on-device wake word</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <circle cx="12" cy="12" r="6"></circle>
+                            <circle cx="12" cy="12" r="2"></circle>
+                        </svg>
+                    </span>
+                    <h3 class="feature-title">Always Ready</h3>
+                    <p class="feature-description">Wake word activation with less than 100ms response time. No app to open, no screen to touch.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="10" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </span>
+                    <h3 class="feature-title">Privacy First</h3>
+                    <p class="feature-description">Hardware mute switch, on-device wake word, and end-to-end encryption keep your conversations private.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                            <path d="M8 6h8"></path>
+                            <path d="M7 10h10"></path>
+                            <path d="M7 14h10"></path>
+                        </svg>
+                    </span>
+                    <h3 class="feature-title">All-Day Battery</h3>
+                    <p class="feature-description">12+ hours of active use. USB-C fast charging and wireless charging keep you powered.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            <path d="M17 13v6"></path>
+                            <path d="M7 13v6"></path>
+                        </svg>
+                    </span>
+                    <h3 class="feature-title">Sustainable Design</h3>
+                    <p class="feature-description">65% recycled materials, replaceable battery, and mail-back recycling program.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                            <line x1="12" y1="18" x2="12.01" y2="18"></line>
+                        </svg>
+                    </span>
+                    <h3 class="feature-title">iPhone Powered</h3>
+                    <p class="feature-description">Leverages your iPhone's processing power for instant, intelligent responses.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                    </span>
+                    <h3 class="feature-title">Multi-User Ready</h3>
+                    <p class="feature-description">Voice profiles for the whole family or team, with personalized responses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spaces Section -->
+    <section class="spaces" id="spaces">
+        <div class="spaces-demo">
+            <div class="spaces-visual">
+                <div class="space-bubble space-work">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 8px;">
+                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                    Work Space<br>
+                    <small style="font-size: 12px; opacity: 0.8;">Team chats, projects</small>
+                </div>
+                <div class="space-bubble space-personal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 8px;">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    Personal Space<br>
+                    <small style="font-size: 12px; opacity: 0.8;">Shopping, health, hobbies</small>
+                </div>
+                <div class="space-bubble space-family">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 8px;">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                        <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                        <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                    </svg>
+                    Family Space<br>
+                    <small style="font-size: 12px; opacity: 0.8;">Shared calendars, lists</small>
+                </div>
+            </div>
+            <div class="spaces-info">
+                <h3>Keep Life Organized with <span class="gradient-text">Spaces</span></h3>
+                <p>Separate work from personal life with a simple voice command. Your shopping lists stay out of team chat.</p>
+                <div class="voice-commands">
+                    <div class="command">"Hey Sociail, use Personal Space"</div>
+                    <div class="command">"Switch to Work Space"</div>
+                    <div class="command">"Create new space called Side Project"</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta" id="notify">
+        <div class="cta-content">
+            <h2>Reserve Your <span class="gradient-text">Sociail Assistant</span></h2>
+            <p>Free with Sociail Pro subscription, or starting at $69 standalone.</p>
+            
+            <!-- Pricing Options -->
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 40px 0; max-width: 600px; margin-left: auto; margin-right: auto;">
+                <div class="feature-card" style="padding: 25px; text-align: center; border: 2px solid var(--border-color); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--sociail-blue)'" onmouseout="this.style.transform=''; this.style.borderColor='var(--border-color)'">
+                    <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 10px; color: var(--sociail-blue);">Sociail Pro</h4>
+                    <div style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">FREE</div>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">with annual subscription</p>
+                    <div style="font-size: 12px; color: var(--text-secondary);">Includes device + platform access</div>
+                </div>
+                <div class="feature-card" style="padding: 25px; text-align: center; border: 2px solid var(--border-color); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--sociail-blue)'" onmouseout="this.style.transform=''; this.style.borderColor='var(--border-color)'">
+                    <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">USB-C Only</h4>
+                    <div style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">$69</div>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">one-time purchase</p>
+                    <div style="font-size: 12px; color: var(--text-secondary);">Powered via USB-C</div>
+                </div>
+                <div class="feature-card" style="padding: 25px; text-align: center; border: 2px solid var(--sociail-yellow); transition: all 0.3s ease; cursor: pointer; position: relative;" onmouseover="this.style.transform='translateY(-5px)'; this.style.borderColor='var(--sociail-blue)'" onmouseout="this.style.transform=''; this.style.borderColor='var(--sociail-yellow)'">
+                    <div style="position: absolute; top: -10px; right: -10px; background: var(--sociail-yellow); color: var(--text-primary); padding: 4px 8px; border-radius: 12px; font-size: 11px; font-weight: 600;">POPULAR</div>
+                    <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 10px;">Full Battery</h4>
+                    <div style="font-size: 24px; font-weight: 700; margin-bottom: 8px;">$99</div>
+                    <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 15px;">one-time purchase</p>
+                    <div style="font-size: 12px; color: var(--text-secondary);">USB-C + 12hr battery</div>
+                </div>
+            </div>
+            
+            <form class="email-form" onsubmit="handleSubmit(event)">
+                <input type="email" class="email-input" placeholder="Enter your email" required>
+                <button type="submit" class="notify-btn">Reserve Your Assistant</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div style="max-width: 980px; margin: 0 auto; padding: 0 22px;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <p style="font-size: 16px; color: var(--text-secondary); margin-bottom: 10px;">Built by the team behind <strong>Sociail</strong>, the Shared Intelligence platform. The first AI hardware designed for shared intelligence.</p>
+            </div>
+            <p>&copy; 2025 Sociail. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Form handler
+        function handleSubmit(e) {
+            e.preventDefault();
+            const email = e.target.querySelector('input').value;
+            alert(`Thanks for your interest! We'll notify ${email} when Sociail Assistant launches.`);
+            e.target.reset();
+        }
+
+        // Space bubble interaction
+        document.querySelectorAll('.space-bubble').forEach(bubble => {
+            bubble.addEventListener('click', function() {
+                const spaceName = this.textContent.trim().split('\n')[1];
+                this.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 300);
+            });
+        });
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (currentTheme === null) {
+                // No theme set, use opposite of system preference
+                document.documentElement.setAttribute('data-theme', prefersDark ? 'light' : 'dark');
+            } else if (currentTheme === 'light') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+            
+            // Store preference
+            localStorage.setItem('theme', document.documentElement.getAttribute('data-theme'));
+            updateThemeIcon();
+        }
+
+        function updateThemeIcon() {
+            const themeButton = document.querySelector('.theme-switch');
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = currentTheme === 'dark' || (currentTheme === null && prefersDark);
+            
+            themeButton.innerHTML = isDark ? 
+                `<svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>` :
+                `<svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>`;
+        }
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            }
+            updateThemeIcon();
+            
+            // Listen for system theme changes
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+                if (!document.documentElement.getAttribute('data-theme')) {
+                    updateThemeIcon();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

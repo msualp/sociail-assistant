@@ -1,0 +1,18 @@
+{
+    "sourceFile": "styles/variables.css",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1748955521070,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1748955521070,
+            "name": "Commit-0",
+            "content": "/* CSS Custom Properties and Theme Variables */\n:root {\n    --sociail-yellow: #f9d949;\n    --sociail-blue: #0066ff;\n    --text-primary: #1d1d1f;\n    --text-secondary: #86868b;\n    --bg-primary: #fbfbfd;\n    --bg-secondary: #f5f5f7;\n    --border-color: rgba(0, 0, 0, 0.1);\n    --screen-color: #3375e0;\n}\n\n@media (prefers-color-scheme: dark) {\n    :root {\n        --text-primary: #f5f5f7;\n        --text-secondary: #a1a1a6;\n        --bg-primary: #000000;\n        --bg-secondary: #1c1c1e;\n        --border-color: rgba(255, 255, 255, 0.1);\n        --screen-color: #007aff;\n    }\n}\n\n[data-theme=\"dark\"] {\n    --text-primary: #f5f5f7;\n    --text-secondary: #a1a1a6;\n    --bg-primary: #000000;\n    --bg-secondary: #1c1c1e;\n    --border-color: rgba(255, 255, 255, 0.1);\n    --screen-color: #007aff;\n}\n\n[data-theme=\"light\"] {\n    --text-primary: #1d1d1f;\n    --text-secondary: #86868b;\n    --bg-primary: #fbfbfd;\n    --bg-secondary: #f5f5f7;\n    --border-color: rgba(0, 0, 0, 0.1);\n    --screen-color: #3375e0;\n}\n"
+        }
+    ]
+}

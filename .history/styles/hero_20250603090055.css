@@ -1,0 +1,203 @@
+/* Hero Section Styles */
+.hero {
+    padding-top: 44px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 60px 22px 40px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* Device Section */
+.device-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+    padding: 20px 0 40px 0;
+    perspective: 1000px;
+    overflow: hidden;
+    min-height: 500px;
+    mask-image: linear-gradient(to top, 
+        rgba(0,0,0,1) 0%, 
+        rgba(0,0,0,1) 85%, 
+        rgba(0,0,0,0.8) 92%, 
+        rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to top, 
+        rgba(0,0,0,1) 0%, 
+        rgba(0,0,0,1) 85%, 
+        rgba(0,0,0,0.8) 92%, 
+        rgba(0,0,0,0) 100%);
+}
+
+.device-preview {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+}
+
+/* Concentric Circles Background */
+.concentric-circles {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150vw;
+    height: 150vw;
+    max-width: 1400px;
+    max-height: 1400px;
+    pointer-events: none;
+    z-index: 0;
+    animation: circleFloat 6s ease-in-out infinite;
+}
+
+@keyframes circleFloat {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+    25% { transform: translate(-50%, -50%) translateY(-20px); }
+    75% { transform: translate(-50%, -50%) translateY(10px); }
+}
+
+.circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid;
+    animation: pulse 4s ease-out infinite;
+}
+
+.circle:nth-child(1) {
+    width: 20%;
+    height: 20%;
+    min-width: 200px;
+    min-height: 200px;
+    border-color: rgba(134, 134, 139, 0.3);
+    animation-delay: 0s;
+}
+
+.circle:nth-child(2) {
+    width: 35%;
+    height: 35%;
+    min-width: 300px;
+    min-height: 300px;
+    border-color: rgba(134, 134, 139, 0.25);
+    animation-delay: 0.5s;
+}
+
+.circle:nth-child(3) {
+    width: 50%;
+    height: 50%;
+    min-width: 400px;
+    min-height: 400px;
+    border-color: rgba(134, 134, 139, 0.2);
+    animation-delay: 1s;
+}
+
+.circle:nth-child(4) {
+    width: 65%;
+    height: 65%;
+    min-width: 500px;
+    min-height: 500px;
+    border-color: rgba(134, 134, 139, 0.15);
+    animation-delay: 1.5s;
+}
+
+.circle:nth-child(5) {
+    width: 80%;
+    height: 80%;
+    min-width: 600px;
+    min-height: 600px;
+    border-color: rgba(134, 134, 139, 0.1);
+    animation-delay: 2s;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+/* Ticker Tape Styles */
+.ticker-container {
+    position: absolute;
+    width: 100%;
+    overflow: hidden;
+    opacity: 0.6;
+}
+
+.ticker-bottom {
+    bottom: 10%;
+}
+
+.ticker-content {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll 30s linear infinite;
+}
+
+.ticker-bottom .ticker-content {
+    animation: scrollReverse 30s linear infinite;
+}
+
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes scrollReverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+.ticker-item {
+    padding: 0 40px;
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-family: 'SF Mono', Monaco, monospace;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ticker-item::before {
+    content: "•";
+    color: var(--sociail-yellow);
+    font-weight: bold;
+}
+
+.ticker-item.work {
+    color: var(--sociail-blue);
+}
+
+.ticker-item.personal {
+    color: #d4a017;
+}
+
+.ticker-item.family {
+    color: #34c759;
+}
+
+.ticker-item.creative {
+    color: #ff3b30;
+}

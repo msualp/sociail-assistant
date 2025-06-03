@@ -1,0 +1,354 @@
+/* Features, Spaces, and CTA Sections */
+.features {
+    background: var(--bg-secondary);
+    padding: 80px 0;
+}
+
+/* Mobility Grid Styles */
+.mobility-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 80px 60px;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.mobility-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobility-box {
+    background: white;
+    border: 2px solid var(--border-color);
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+    .mobility-box {
+        background: var(--bg-secondary);
+        box-shadow: 0 8px 24px rgba(255, 255, 255, 0.08);
+    }
+}
+
+[data-theme="dark"] .mobility-box {
+    background: var(--bg-secondary);
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .mobility-box {
+    background: white;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.mobility-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 102, 255, 0.15);
+    border-color: var(--sociail-blue);
+}
+
+/* Grid Arrows - Positioned in Grid Gaps */
+.mobility-grid::before {
+    content: "→";
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    color: rgba(0, 102, 255, 0.7);
+    font-weight: bold;
+    z-index: 1;
+}
+
+.mobility-grid::after {
+    content: "↓";
+    position: absolute;
+    top: 50%;
+    right: 25%;
+    transform: translate(50%, -50%);
+    font-size: 32px;
+    color: rgba(0, 102, 255, 0.7);
+    font-weight: bold;
+    z-index: 1;
+}
+
+.arrow-left {
+    position: absolute;
+    content: "←";
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    color: rgba(0, 102, 255, 0.7);
+    font-weight: bold;
+    z-index: 1;
+}
+
+.mobility-grid .arrow-left::before {
+    content: "←";
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 32px;
+    color: rgba(0, 102, 255, 0.7);
+    font-weight: bold;
+    z-index: 1;
+}
+
+/* Remove individual arrows from items */
+.arrow-right, .arrow-down {
+    display: none;
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+    .mobility-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+        gap: 40px;
+        max-width: 320px;
+    }
+    
+    .mobility-grid::before,
+    .mobility-grid::after,
+    .arrow-left {
+        display: none;
+    }
+    
+    .mobility-item:not(:last-child)::after {
+        content: "↓";
+        display: block;
+        text-align: center;
+        font-size: 24px;
+        color: rgba(0, 102, 255, 0.7);
+        font-weight: bold;
+        margin-top: 20px;
+    }
+    
+    .mobility-box {
+        max-width: 100%;
+    }
+}
+
+.features-content {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 22px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.feature-icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+    display: block;
+    color: var(--sociail-blue);
+}
+
+.feature-title {
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.feature-description {
+    font-size: 17px;
+    line-height: 1.47059;
+    color: var(--text-secondary);
+}
+
+/* Spaces Section */
+.spaces {
+    padding: 80px 0;
+    background: white;
+}
+
+@media (prefers-color-scheme: dark) {
+    .spaces {
+        background: var(--bg-primary);
+    }
+}
+
+[data-theme="dark"] .spaces {
+    background: var(--bg-primary);
+}
+
+.spaces-demo {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 22px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.spaces-visual {
+    position: relative;
+    height: 400px;
+}
+
+.space-bubble {
+    position: absolute;
+    border-radius: 20px;
+    padding: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.space-work {
+    top: 20px;
+    left: 0;
+    background: rgba(0, 102, 255, 0.1);
+    border: 2px solid var(--sociail-blue);
+    color: var(--sociail-blue);
+}
+
+.space-personal {
+    top: 120px;
+    right: 0;
+    background: rgba(249, 217, 73, 0.1);
+    border: 2px solid var(--sociail-yellow);
+    color: #d4a017;
+}
+
+.space-family {
+    bottom: 80px;
+    left: 60px;
+    background: rgba(52, 199, 89, 0.1);
+    border: 2px solid #34c759;
+    color: #34c759;
+}
+
+.space-bubble:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.spaces-info h3 {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.spaces-info p {
+    font-size: 21px;
+    line-height: 1.381;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+.voice-commands {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 20px;
+    font-family: 'SF Mono', Monaco, monospace;
+    font-size: 14px;
+}
+
+.command {
+    padding: 8px 0;
+    color: var(--sociail-blue);
+}
+
+/* Call to Action */
+.cta {
+    padding: 80px 0;
+    text-align: center;
+    background: var(--bg-secondary);
+}
+
+.cta-content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 22px;
+}
+
+.cta h2 {
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.cta p {
+    font-size: 21px;
+    color: var(--text-secondary);
+    margin-bottom: 40px;
+}
+
+.email-form {
+    display: flex;
+    gap: 12px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.email-input {
+    flex: 1;
+    padding: 16px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    font-size: 17px;
+    background: white;
+    color: var(--text-primary);
+    transition: border-color 0.3s;
+}
+
+@media (prefers-color-scheme: dark) {
+    .email-input {
+        background: var(--bg-secondary);
+    }
+}
+
+[data-theme="dark"] .email-input {
+    background: var(--bg-secondary);
+}
+
+[data-theme="light"] .email-input {
+    background: white;
+}
+
+.email-input:focus {
+    outline: none;
+    border-color: var(--sociail-blue);
+}
+
+.notify-btn {
+    padding: 16px 30px;
+    background: var(--sociail-blue);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.notify-btn:hover {
+    background: #0051d5;
+    transform: scale(1.05);
+}
+
+/* Footer */
+footer {
+    padding: 40px 0;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+}

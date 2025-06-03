@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sociail Assistant - Product Concept</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .sociail-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #f9d949;
+            color: #000;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .sociail-badge span {
+            background: #0066ff;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            margin-left: 0.3rem;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #f9d949, #0066ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.2); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #a0a0a0;
+            margin-bottom: 3rem;
+        }
+        
+        .product-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            align-items: center;
+        }
+        
+        .device-container {
+            position: relative;
+            perspective: 1000px;
+        }
+        
+        .device {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #f9d949, #e5c534);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 
+                0 20px 40px rgba(249, 217, 73, 0.3),
+                inset 0 2px 4px rgba(255, 255, 255, 0.3);
+            transform-style: preserve-3d;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotateY(-10deg); }
+            50% { transform: translateY(-20px) rotateY(10deg); }
+        }
+        
+        .device-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #0066ff 0%, #0052cc 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 0 60px rgba(0, 102, 255, 0.6),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+        
+        .status-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 180px;
+            height: 180px;
+            border: 3px solid transparent;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #0066ff, #f9d949, #0066ff, #f9d949, #0066ff);
+            -webkit-mask: radial-gradient(transparent 86px, black 86px, black 90px, transparent 90px);
+            mask: radial-gradient(transparent 86px, black 86px, black 90px, transparent 90px);
+            animation: rotate 4s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .mic-icon {
+            width: 50px;
+            height: 50px;
+            fill: white;
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+        }
+        
+        .features {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .feature {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(249, 217, 73, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .feature:hover::before {
+            opacity: 1;
+        }
+        
+        .feature:hover {
+            transform: translateX(10px);
+            border-color: rgba(249, 217, 73, 0.5);
+        }
+        
+        .feature h3 {
+            color: #f9d949;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .spec-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .spec-card::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #f9d949, #0066ff, #f9d949);
+            border-radius: 20px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .spec-card:hover::after {
+            opacity: 1;
+        }
+        
+        .spec-card:hover {
+            transform: translateY(-10px);
+            background: rgba(249, 217, 73, 0.05);
+        }
+        
+        .spec-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .spec-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+        
+        .spec-detail {
+            color: #a0a0a0;
+            line-height: 1.6;
+        }
+        
+        .use-cases {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 30px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+        
+        .use-cases h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #f9d949, #0066ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .use-case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .use-case {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .use-case:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .use-case-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .use-case h3 {
+            margin-bottom: 0.5rem;
+            color: #f9d949;
+        }
+        
+        @media (max-width: 768px) {
+            .product-showcase {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .device {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div style="display: inline-block; background: linear-gradient(45deg, #ff006e, #00d4ff); padding: 0.5rem 2rem; border-radius: 25px; margin-bottom: 1rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; animation: shimmer 3s infinite;">
+                Coming Soon
+            </div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1rem;">
+                <h1 class="logo">Sociail Assistant</h1>
+            </div>
+            <p class="tagline">Bringing Shared Intelligence From Lean-Forward to Lean-Back</p>
+        </header>
+        
+        <section class="product-showcase">
+            <div class="device-container">
+                <div class="device">
+                    <div class="status-ring"></div>
+                    <div class="device-center">
+                        <svg class="mic-icon" viewBox="0 0 24 24">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3zM19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="features">
+                <div class="feature">
+                    <h3>🎤 3-Mic Array with Beamforming</h3>
+                    <p>Far-field voice capture up to 5 meters with advanced noise cancellation. Powered by Knowles IA-611 MEMS technology.</p>
+                </div>
+                <div class="feature">
+                    <h3>🔊 Room-Filling Audio</h3>
+                    <p>28mm driver with 3W peak power delivers clear AI responses. Perfect for workshops, vehicles, or open spaces.</p>
+                </div>
+                <div class="feature">
+                    <h3>💡 Ambient RGB Status Ring</h3>
+                    <p>12 RGB LEDs show device states: ready (blue), listening (pulse), thinking (purple), speaking (green), muted (red).</p>
+                </div>
+                <div class="feature">
+                    <h3>🔋 All-Day Battery Life</h3>
+                    <p>1800mAh Li-Po battery provides 12+ hours of active use. USB-C fast charging and optional wireless charging.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="specs-grid">
+            <div class="spec-card">
+                <div class="spec-icon">🔌</div>
+                <h3 class="spec-title">Connectivity</h3>
+                <p class="spec-detail">BLE 5.3 Audio, Nordic nRF52840 MCU, iPhone-first architecture with "Brain-in-Phone" design</p>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">🔋</div>
+                <h3 class="spec-title">Power Options</h3>
+                <p class="spec-detail">Wired-only ($99) or Battery model ($149) with 12+ hours active use, Qi wireless charging</p>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">🎯</div>
+                <h3 class="spec-title">Smart Features</h3>
+                <p class="spec-detail">Wake word on iPhone, <100ms response, multi-user voice profiles, privacy-first with hardware mute</p>
+            </div>
+            <div class="spec-card">
+                <div class="spec-icon">🔮</div>
+                <h3 class="spec-title">Expandable Platform</h3>
+                <p class="spec-detail">I²C expansion port for future sensors: temperature, air quality, gesture control, and custom modules</p>
+            </div>
+        </section>
+        
+        <section class="use-cases">
+            <h2>Perfect For Every Situation</h2>
+            <div class="use-case-grid">
+                <div class="use-case">
+                    <div class="use-case-icon">🔧</div>
+                    <h3>Auto Repair</h3>
+                    <p>"Hey Sociail, torque spec for this alternator"</p>
+                </div>
+                <div class="use-case">
+                    <div class="use-case-icon">🚗</div>
+                    <h3>Commute</h3>
+                    <p>Get team updates and respond hands-free</p>
+                </div>
+                <div class="use-case">
+                    <div class="use-case-icon">👨‍🍳</div>
+                    <h3>Cooking</h3>
+                    <p>"Is this steak medium-rare?" with camera</p>
+                </div>
+                <div class="use-case">
+                    <div class="use-case-icon">🪜</div>
+                    <h3>On a Ladder</h3>
+                    <p>Add reminders and tasks while working</p>
+                </div>
+                <div class="use-case">
+                    <div class="use-case-icon">♿</div>
+                    <h3>Accessibility</h3>
+                    <p>Voice-first interface for all users</p>
+                </div>
+                <div class="use-case">
+                    <div class="use-case-icon">👥</div>
+                    <h3>Collaboration</h3>
+                    <p>Pass device for group brainstorming</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
