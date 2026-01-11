@@ -144,15 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const planInput = document.querySelector('input[name="plan"]');
     const pricingCards = document.querySelectorAll('.pricing-card');
 
-    pricingCards.forEach((card, idx) => {
+    pricingCards.forEach((card) => {
         const planValue = card.getAttribute('data-plan') || '';
-        if (idx === 0 && planInput && !planInput.value) {
-            card.classList.add('selected');
-            card.setAttribute('aria-pressed', 'true');
-            planInput.value = planValue;
-        } else {
-            card.setAttribute('aria-pressed', card.classList.contains('selected') ? 'true' : 'false');
-        }
+        card.setAttribute('aria-pressed', card.classList.contains('selected') ? 'true' : 'false');
 
         card.addEventListener('click', () => {
             if (planInput) {

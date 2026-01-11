@@ -420,7 +420,7 @@
             
             <!-- Pricing Options -->
             <div class="pricing-grid">
-                <div class="pricing-card selected" tabindex="0" role="button" aria-pressed="true" data-plan="Sociail Pro">
+                <div class="pricing-card" tabindex="0" role="button" aria-pressed="false" data-plan="Sociail Pro">
                     <h4 style="color: var(--sociail-blue);">Sociail Pro</h4>
                     <div class="price">FREE</div>
                     <p class="price-note">with annual subscription</p>
@@ -442,7 +442,7 @@
             </div>
             
             <form class="email-form" action="/api/subscribe" method="post" onsubmit="handleSubmit(event)">
-                <input type="hidden" name="plan" value="Sociail Pro">
+                <input type="hidden" name="plan" value="">
                 <input type="email" class="email-input" name="email" autocomplete="email" placeholder="Enter your email" aria-label="Email address" required>
                 <button type="submit" class="notify-btn">Reserve Your Assistant</button>
             </form>
