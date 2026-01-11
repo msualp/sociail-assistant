@@ -41,7 +41,7 @@ npm start
 
 **Theming:** Uses `data-theme` attribute on `<html>` with CSS custom properties. Respects `prefers-color-scheme` by default, with manual override via theme toggle button.
 
-**Environment:** set `RESEND_API_KEY` and optionally `RESEND_FROM`/`RESEND_NOTIFY_TO` (see `.env.example`).
+**Environment:** set `RESEND_API_KEY` and optionally `RESEND_FROM`/`RESEND_REPLY_TO`/`RESEND_NOTIFY_TO` (see `.env.example`).
 
 ## Code Style
 

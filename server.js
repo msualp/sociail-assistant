@@ -9,6 +9,7 @@ const port = process.env.PORT || 3000;
 const resendApiKey = process.env.RESEND_API_KEY;
 const resendFrom = process.env.RESEND_FROM || 'Sociail Assistant <onboarding@resend.dev>';
 const resendNotifyTo = process.env.RESEND_NOTIFY_TO || 'msualp@sociail.com';
+const resendReplyTo = process.env.RESEND_REPLY_TO;
 
 const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);
 const escapeHtml = (value) => value
@@ -54,6 +55,10 @@ app.post('/api/subscribe', async (req, res) => {
         text: `New signup: ${email}`,
         html: `<p><strong>New signup:</strong> ${escapeHtml(email)}</p>`
     };
+
+    if (resendReplyTo) {
+        payload.reply_to = resendReplyTo;
+    }
 
     try {
         const response = await fetch('https://api.resend.com/emails', {
