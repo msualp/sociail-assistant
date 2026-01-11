@@ -358,10 +358,6 @@
     cursor: pointer;
 }
 
-.device-hotspot:hover {
-    z-index: 9999;
-}
-
 /* Hotspot positioning - matches device positions */
 .device-hotspot.iphone-hotspot {
     left: -25px;
@@ -388,6 +384,10 @@
     width: 320px;
     height: 120px;
     z-index: 50;
+}
+
+.device-hotspot:hover {
+    z-index: 9999;
 }
 
 /* Override device positioning when inside hotspot */

@@ -3,7 +3,6 @@
     background: var(--bg-secondary);
     padding: 80px 0;
     position: relative;
-    z-index: 1;
 }
 
 /* Mobility Grid Styles */
@@ -353,6 +352,22 @@
     margin: 0 auto;
 }
 
+.form-status {
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    min-height: 18px;
+    text-align: center;
+}
+
+.form-status.success {
+    color: #34c759;
+}
+
+.form-status.error {
+    color: #ff3b30;
+}
+
 .email-input {
     flex: 1;
     padding: 16px 20px;
@@ -400,6 +415,12 @@
     transform: scale(1.05);
 }
 
+.notify-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
+}
+
 /* Footer */
 footer {
     padding: 40px 0;
@@ -407,4 +428,45 @@ footer {
     text-align: center;
     color: var(--text-secondary);
     font-size: 14px;
+}
+
+.footer-content {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 22px;
+}
+
+.footer-logo {
+    display: inline-block;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+    margin-bottom: 16px;
+}
+
+.footer-logo:hover {
+    opacity: 0.8;
+}
+
+.footer-tagline {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.footer-legal {
+    font-size: 13px;
+    color: var(--text-secondary);
+    opacity: 0.8;
+}
+
+.footer-legal a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.footer-legal a:hover {
+    opacity: 1;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }

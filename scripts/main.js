@@ -12,11 +12,54 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Form handler
-function handleSubmit(e) {
+async function handleSubmit(e) {
     e.preventDefault();
-    const email = e.target.querySelector('input').value;
-    alert(`Thanks for your interest! We'll notify ${email} when Sociail Assistant launches.`);
-    e.target.reset();
+    const form = e.target;
+    const emailInput = form.querySelector('input[type="email"]');
+    const status = form.parentElement?.querySelector('.form-status');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const email = emailInput.value.trim();
+    const originalLabel = submitButton.textContent;
+
+    if (status) {
+        status.textContent = '';
+        status.classList.remove('success', 'error');
+    }
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Sending...';
+
+    try {
+        const response = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        });
+
+        if (!response.ok) {
+            const data = await response.json().catch(() => ({}));
+            throw new Error(data.error || 'Something went wrong. Please try again.');
+        }
+
+        if (status) {
+            status.textContent = 'Thanks! We will be in touch soon.';
+            status.classList.add('success');
+        } else {
+            alert('Thanks! We will be in touch soon.');
+        }
+
+        form.reset();
+    } catch (error) {
+        if (status) {
+            status.textContent = error.message || 'Something went wrong. Please try again.';
+            status.classList.add('error');
+        } else {
+            alert('Something went wrong. Please try again.');
+        }
+    } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = originalLabel;
+    }
 }
 
 // Space bubble interaction

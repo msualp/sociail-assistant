@@ -44,6 +44,15 @@ nav {
     font-weight: 500;
 }
 
+.logo img {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.logo:hover img {
+    opacity: 0.8;
+    transform: scale(1.02);
+}
+
 .logo-badge {
     background: var(--sociail-yellow);
     padding: 4px 12px;
@@ -78,6 +87,8 @@ nav {
 
 .nav-links a:hover {
     opacity: 1;
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
 
 .theme-toggle {
@@ -87,7 +98,7 @@ nav {
 }
 
 .theme-switch {
-    background: none;
+    background: rgba(0, 0, 0, 0.04);
     border: none;
     cursor: pointer;
     padding: 6px;
@@ -99,17 +110,32 @@ nav {
 }
 
 .theme-switch:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(0, 0, 0, 0.08);
 }
 
 @media (prefers-color-scheme: dark) {
+    .theme-switch {
+        background: rgba(255, 255, 255, 0.08);
+    }
     .theme-switch:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.12);
     }
 }
 
+[data-theme="dark"] .theme-switch {
+    background: rgba(255, 255, 255, 0.08);
+}
+
 [data-theme="dark"] .theme-switch:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="light"] .theme-switch {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .theme-switch:hover {
+    background: rgba(0, 0, 0, 0.08);
 }
 
 .theme-icon {

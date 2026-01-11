@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sociail Assistant - Your Sociail Intelligence, Everywhere You Go</title>
-    
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="16x16">
+    <link rel="apple-touch-icon" href="/favicon.ico">
+
     <!-- CSS Modules -->
     <link rel="stylesheet" href="styles/variables.css">
     <link rel="stylesheet" href="styles/base.css">
@@ -18,7 +22,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-content">
-            <a href="https://sociail-website-dev-v2.vercel.app/" class="logo">
+            <a href="https://www.sociail.com/" class="logo">
                 <img src="images/sociail-logo-with-gray-stroke.svg" alt="Sociail" style="height: 28px; width: auto;">
             </a>
             <div class="theme-toggle">
@@ -430,20 +434,26 @@
                 </div>
             </div>
             
-            <form class="email-form" onsubmit="handleSubmit(event)">
-                <input type="email" class="email-input" placeholder="Enter your email" required>
+            <form class="email-form" action="/api/subscribe" method="post" onsubmit="handleSubmit(event)">
+                <input type="email" class="email-input" name="email" autocomplete="email" placeholder="Enter your email" aria-label="Email address" required>
                 <button type="submit" class="notify-btn">Reserve Your Assistant</button>
             </form>
+            <p class="form-status" role="status" aria-live="polite"></p>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div style="max-width: 980px; margin: 0 auto; padding: 0 22px;">
-            <div style="text-align: center; margin-bottom: 20px;">
-                <p style="font-size: 16px; color: var(--text-secondary); margin-bottom: 10px;">Built by the team behind <strong>Sociail</strong>, the Shared Intelligence platform. The first AI hardware designed for shared intelligence.</p>
-            </div>
-            <p>&copy; 2025 Sociail. All rights reserved. | Privacy Policy | Terms of Service</p>
+        <div class="footer-content">
+            <a href="https://www.sociail.com/" class="footer-logo">
+                <img src="images/sociail-logo-with-gray-stroke.svg" alt="Sociail" style="height: 24px; width: auto;">
+            </a>
+            <p class="footer-tagline">Built with <span style="color: #ff3b30;">&#10084;</span> by humans and AIs</p>
+            <p class="footer-legal">
+                &copy; 2025 Sociail, Inc. All rights reserved. |
+                <a href="https://sociail.com/privacy-policy">Privacy Policy</a> |
+                <a href="https://sociail.com/terms-of-service">Terms of Service</a>
+            </p>
         </div>
     </footer>
 
