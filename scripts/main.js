@@ -129,4 +129,23 @@ document.addEventListener('DOMContentLoaded', function() {
             updateThemeIcon();
         }
     });
+
+    const emailInput = document.querySelector('.email-input');
+    const pricingCards = document.querySelectorAll('.pricing-card');
+
+    pricingCards.forEach(card => {
+        card.addEventListener('click', () => {
+            if (emailInput) {
+                emailInput.focus();
+                emailInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        });
+
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                card.click();
+            }
+        });
+    });
 });

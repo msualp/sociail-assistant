@@ -538,3 +538,13 @@
     filter: brightness(1.1);
     transition: filter 0.3s ease;
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .device-float,
+    .device-center,
+    .device-hotspot.assistant-hotspot .device-float,
+    .device-preview * {
+        animation: none !important;
+        transition: none !important;
+    }
+}

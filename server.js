@@ -33,6 +33,10 @@ app.get('/favicon.ico', (req, res) => {
     res.sendFile(path.join(__dirname, 'favicon.ico'));
 });
 
+app.get('/health', (req, res) => {
+    res.json({ ok: true });
+});
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
@@ -95,6 +99,10 @@ const subscribeHandler = async (req, res) => {
 };
 
 app.post('/api/subscribe', subscribeHandler);
+
+app.use((req, res) => {
+    res.status(404).send('Not found');
+});
 
 if (require.main === module) {
     app.listen(port, () => {

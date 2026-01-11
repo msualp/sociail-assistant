@@ -204,3 +204,15 @@
 .ticker-item.creative {
     color: #ff3b30;
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .concentric-circles,
+    .circle,
+    .ticker-content,
+    .device-section *,
+    .hero *,
+    .device-preview * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
