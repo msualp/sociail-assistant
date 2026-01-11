@@ -420,19 +420,19 @@
             
             <!-- Pricing Options -->
             <div class="pricing-grid">
-                <div class="pricing-card" tabindex="0">
+                <div class="pricing-card selected" tabindex="0" role="button" aria-pressed="true" data-plan="Sociail Pro">
                     <h4 style="color: var(--sociail-blue);">Sociail Pro</h4>
                     <div class="price">FREE</div>
                     <p class="price-note">with annual subscription</p>
                     <div class="price-detail">Includes device + platform access</div>
                 </div>
-                <div class="pricing-card" tabindex="0">
+                <div class="pricing-card" tabindex="0" role="button" aria-pressed="false" data-plan="USB-C Only">
                     <h4>USB-C Only</h4>
                     <div class="price">$69</div>
                     <p class="price-note">one-time purchase</p>
                     <div class="price-detail">Powered via USB-C</div>
                 </div>
-                <div class="pricing-card pricing-card-featured" tabindex="0" style="position: relative;">
+                <div class="pricing-card popular" tabindex="0" role="button" aria-pressed="false" data-plan="Full Battery" style="position: relative;">
                     <div class="pricing-badge">POPULAR</div>
                     <h4>Full Battery</h4>
                     <div class="price">$99</div>
@@ -442,6 +442,7 @@
             </div>
             
             <form class="email-form" action="/api/subscribe" method="post" onsubmit="handleSubmit(event)">
+                <input type="hidden" name="plan" value="Sociail Pro">
                 <input type="email" class="email-input" name="email" autocomplete="email" placeholder="Enter your email" aria-label="Email address" required>
                 <button type="submit" class="notify-btn">Reserve Your Assistant</button>
             </form>

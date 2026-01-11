@@ -16,9 +16,19 @@ async function handleSubmit(e) {
     e.preventDefault();
     const form = e.target;
     const emailInput = form.querySelector('input[type="email"]');
+    const planInput = form.querySelector('input[name="plan"]');
     const status = form.parentElement?.querySelector('.form-status');
     const submitButton = form.querySelector('button[type="submit"]');
     const email = emailInput.value.trim();
+    const plan = planInput ? planInput.value.trim() : '';
+
+    if (planInput && !plan) {
+        if (status) {
+            status.textContent = 'Please select an option.';
+            status.classList.add('error');
+        }
+        return;
+    }
     const originalLabel = submitButton.textContent;
 
     if (status) {
@@ -33,7 +43,7 @@ async function handleSubmit(e) {
         const response = await fetch('/api/subscribe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email })
+            body: JSON.stringify({ email, plan })
         });
 
         if (!response.ok) {
@@ -131,10 +141,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     const emailInput = document.querySelector('.email-input');
+    const planInput = document.querySelector('input[name="plan"]');
     const pricingCards = document.querySelectorAll('.pricing-card');
 
-    pricingCards.forEach(card => {
+    pricingCards.forEach((card, idx) => {
+        const planValue = card.getAttribute('data-plan') || '';
+        if (idx === 0 && planInput && !planInput.value) {
+            card.classList.add('selected');
+            card.setAttribute('aria-pressed', 'true');
+            planInput.value = planValue;
+        } else {
+            card.setAttribute('aria-pressed', card.classList.contains('selected') ? 'true' : 'false');
+        }
+
         card.addEventListener('click', () => {
+            if (planInput) {
+                pricingCards.forEach(c => {
+                    c.classList.remove('selected');
+                    c.setAttribute('aria-pressed', 'false');
+                });
+                card.classList.add('selected');
+                card.setAttribute('aria-pressed', 'true');
+                planInput.value = planValue;
+            }
             if (emailInput) {
                 emailInput.focus();
                 emailInput.scrollIntoView({ behavior: 'smooth', block: 'center' });

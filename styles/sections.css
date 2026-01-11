@@ -562,13 +562,14 @@ footer {
     border-color: var(--sociail-blue);
 }
 
+.pricing-card.selected {
+    border-color: var(--sociail-yellow);
+    box-shadow: 0 8px 24px rgba(249, 217, 73, 0.2);
+}
+
 .pricing-card:focus-visible {
     outline: 2px solid var(--sociail-blue);
     outline-offset: 2px;
-}
-
-.pricing-card-featured {
-    border-color: var(--sociail-yellow);
 }
 
 .pricing-badge {

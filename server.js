@@ -43,6 +43,7 @@ app.get('/', (req, res) => {
 
 const subscribeHandler = async (req, res) => {
     const email = String(req.body?.email || '').trim();
+    const plan = req.body?.plan ? String(req.body.plan).trim() : '';
 
     if (!isValidEmail(email)) {
         return res.status(400).json({ ok: false, error: 'Invalid email address.' });
@@ -52,12 +53,14 @@ const subscribeHandler = async (req, res) => {
         return res.status(500).json({ ok: false, error: 'Email service not configured.' });
     }
 
+    const planLine = plan ? `Plan: ${plan}` : 'Plan: not specified';
+
     const payload = {
         from: resendFrom,
         to: resendNotifyTo,
         subject: 'New Sociail Assistant interest',
-        text: `New signup: ${email}`,
-        html: `<p><strong>New signup:</strong> ${escapeHtml(email)}</p>`
+        text: `New signup: ${email}\n${planLine}`,
+        html: `<p><strong>New signup:</strong> ${escapeHtml(email)}</p><p>${escapeHtml(planLine)}</p>`
     };
 
     if (resendReplyTo) {

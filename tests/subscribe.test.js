@@ -35,7 +35,7 @@ test('rejects invalid email without calling Resend', async (t) => {
         assert.fail('Resend should not be called for invalid email');
     };
 
-    const req = { body: { email: 'not-an-email' } };
+    const req = { body: { email: 'not-an-email', plan: 'USB-C Only' } };
     const res = createMockRes();
 
     await subscribeHandler(req, res);
@@ -60,7 +60,7 @@ test('sends payload to Resend with reply-to when email is valid', async (t) => {
         };
     };
 
-    const req = { body: { email: 'user@example.com' } };
+    const req = { body: { email: 'user@example.com', plan: 'Full Battery' } };
     const res = createMockRes();
 
     await subscribeHandler(req, res);
@@ -70,4 +70,5 @@ test('sends payload to Resend with reply-to when email is valid', async (t) => {
     assert.ok(resendPayload);
     assert.strictEqual(resendPayload.reply_to, 'reply@example.com');
     assert.ok(resendPayload.text.includes('user@example.com'));
+    assert.ok(resendPayload.text.includes('Full Battery'));
 });
