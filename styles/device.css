@@ -7,12 +7,14 @@
     width: 320px;
     height: 120px;
     animation: float 6s ease-in-out infinite;
+    z-index: 20;
+    cursor: pointer;
 }
 
 /* Hey Sociail Text Animation */
 .hey-sociail-text {
     position: absolute;
-    top: 15%;
+    top: 18%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 32px;
@@ -256,8 +258,8 @@
 }
 
 .iphone-silhouette {
-    left: -50px;
-    top: 30%;
+    left: -25px;
+    top: 38%;
     transform: translateY(-50%) rotate(-8deg);
     width: 140px;
     height: 280px;
@@ -295,8 +297,8 @@
 }
 
 .laptop-silhouette {
-    right: -160px;
-    top: 30%;
+    right: -100px;
+    top: 38%;
     transform: translateY(-50%) rotate(8deg);
     width: 320px;
     height: 200px;
