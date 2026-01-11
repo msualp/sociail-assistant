@@ -27,7 +27,10 @@ h1 {
 .gradient-text {
     background: linear-gradient(135deg, var(--sociail-yellow), var(--sociail-blue));
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    background-clip: text;
+    filter: none !important;
 }
 
 .hero-subtitle {
