@@ -20,6 +20,9 @@ python3 -m http.server 8000
 npm install
 npm start
 # Then visit http://localhost:3000
+
+# Run tests (Node test runner)
+npm test
 ```
 
 ## Architecture

@@ -15,6 +15,9 @@ python3 -m http.server 8000
 # Serve locally with backend (email capture)
 npm install
 npm start
+
+# Run tests (Node test runner)
+npm test
 ```
 The HTTP server lets you test hash navigation, theme toggling, and asset paths in a browser at `http://localhost:8000`. The Node server runs at `http://localhost:3000` and requires `RESEND_API_KEY` in `.env` (see `.env.example`).
 

@@ -37,7 +37,7 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.post('/api/subscribe', async (req, res) => {
+const subscribeHandler = async (req, res) => {
     const email = String(req.body?.email || '').trim();
 
     if (!isValidEmail(email)) {
@@ -92,8 +92,14 @@ app.post('/api/subscribe', async (req, res) => {
         console.error('Resend request failed:', error);
         return res.status(502).json({ ok: false, error: error?.message || 'Failed to send email.' });
     }
-});
+};
 
-app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
-});
+app.post('/api/subscribe', subscribeHandler);
+
+if (require.main === module) {
+    app.listen(port, () => {
+        console.log(`Server running on http://localhost:${port}`);
+    });
+}
+
+module.exports = { app, subscribeHandler };
