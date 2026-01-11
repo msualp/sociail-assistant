@@ -1,6 +1,6 @@
 /* Features, Spaces, and CTA Sections */
 .features {
-    background: var(--bg-secondary);
+    background: linear-gradient(180deg, rgba(0, 102, 255, 0.05) 0%, rgba(0, 102, 255, 0) 30%), var(--bg-secondary);
     padding: 80px 0;
     position: relative;
     scroll-margin-top: 72px;
@@ -315,11 +315,14 @@
 }
 
 .voice-commands {
-    background: var(--bg-secondary);
+    background: rgba(255, 255, 255, 0.6);
     border-radius: 12px;
     padding: 20px;
     font-family: 'SF Mono', Monaco, monospace;
     font-size: 14px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .command {
@@ -331,7 +334,7 @@
 .cta {
     padding: 80px 0;
     text-align: center;
-    background: var(--bg-secondary);
+    background: linear-gradient(180deg, rgba(249, 217, 73, 0.08) 0%, rgba(249, 217, 73, 0) 35%), var(--bg-secondary);
     scroll-margin-top: 72px;
 }
 
@@ -466,6 +469,7 @@ footer {
     text-align: center;
     color: var(--text-secondary);
     font-size: 14px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.04) 100%);
 }
 
 .footer-link {
