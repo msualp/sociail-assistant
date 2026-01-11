@@ -36,6 +36,18 @@ async function handleSubmit(e) {
         status.classList.remove('success', 'error');
     }
 
+    if (!plan) {
+        if (status) {
+            status.textContent = 'Please select an option to continue.';
+            status.classList.add('error');
+        }
+        if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = originalLabel;
+        }
+        return;
+    }
+
     submitButton.disabled = true;
     submitButton.textContent = 'Sending...';
 
