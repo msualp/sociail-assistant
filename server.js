@@ -113,4 +113,6 @@ if (require.main === module) {
     });
 }
 
-module.exports = { app, subscribeHandler };
+module.exports = app;
+module.exports.app = app;
+module.exports.subscribeHandler = subscribeHandler;
