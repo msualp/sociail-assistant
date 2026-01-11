@@ -2,6 +2,8 @@
 .features {
     background: var(--bg-secondary);
     padding: 80px 0;
+    position: relative;
+    z-index: 1;
 }
 
 /* Mobility Grid Styles */

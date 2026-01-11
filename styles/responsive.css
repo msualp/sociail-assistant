@@ -147,6 +147,26 @@
         right: -50px;
         top: 38%;
     }
+
+    /* Mobile hotspot positioning */
+    .device-hotspot.iphone-hotspot {
+        width: 80px;
+        height: 160px;
+        left: -15px;
+        top: 38%;
+    }
+
+    .device-hotspot.laptop-hotspot {
+        width: 180px;
+        height: 120px;
+        right: -50px;
+        top: 38%;
+    }
+
+    /* Hide tooltips on mobile - hover doesn't work on touch */
+    .device-tooltip {
+        display: none;
+    }
     
     /* Ticker Optimization */
     .ticker-item {
