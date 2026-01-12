@@ -353,6 +353,7 @@
     text-align: center;
     background: linear-gradient(180deg, rgba(249, 217, 73, 0.08) 0%, rgba(249, 217, 73, 0) 35%), var(--bg-secondary);
     scroll-margin-top: 72px;
+    transition: filter 0.3s ease;
 }
 
 [data-theme="dark"] .cta,
@@ -360,6 +361,10 @@
     .cta {
         background: linear-gradient(180deg, rgba(249, 217, 73, 0.1) 0%, rgba(249, 217, 73, 0) 35%), var(--bg-secondary);
     }
+}
+
+.cta:hover {
+    filter: brightness(1.02);
 }
 
 .cta-content {
@@ -413,6 +418,40 @@
 
 .form-status.error {
     color: var(--error-color);
+}
+
+/* Trust Signals */
+.trust-signals {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 24px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    transition: opacity 0.2s ease;
+}
+
+.trust-signal {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.trust-signal svg {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+}
+
+.trust-signals:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 640px) {
+    .trust-signals {
+        display: none;
+    }
 }
 
 .email-input {
