@@ -155,6 +155,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const emailInput = document.querySelector('.email-input');
     const planInput = document.querySelector('input[name="plan"]');
     const pricingCards = document.querySelectorAll('.pricing-card');
+    const revealTargets = document.querySelectorAll('.reveal');
 
     pricingCards.forEach((card) => {
         const planValue = card.getAttribute('data-plan') || '';
@@ -183,4 +184,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    if (revealTargets.length) {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            revealTargets.forEach(el => el.classList.add('in-view'));
+        } else {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            revealTargets.forEach(el => observer.observe(el));
+        }
+    }
 });
