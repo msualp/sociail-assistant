@@ -49,6 +49,7 @@ async function handleSubmit(e) {
     }
 
     submitButton.disabled = true;
+    submitButton.classList.add('loading');
     submitButton.textContent = 'Sending...';
 
     try {
@@ -80,6 +81,7 @@ async function handleSubmit(e) {
         }
     } finally {
         submitButton.disabled = false;
+        submitButton.classList.remove('loading');
         submitButton.textContent = originalLabel;
     }
 }

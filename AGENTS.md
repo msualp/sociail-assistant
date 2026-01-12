@@ -25,7 +25,7 @@ The HTTP server lets you test hash navigation, theme toggling, and asset paths i
 Use 4-space indentation in HTML, CSS, and JS, and keep semicolons in JS. Prefer kebab-case for CSS class names (for example, `device-hotspot`) and camelCase for JS functions (for example, `toggleTheme`). Add new design tokens to `styles/variables.css` rather than hard-coding colors. Keep section-level styles in their existing module file instead of creating new one-off files.
 
 ## Testing Guidelines
-There are no automated tests. Perform a quick manual smoke check:
+Automated tests live in `tests/subscribe.test.js` and run with `npm test` (Node's built-in test runner) to validate the `/api/subscribe` handler and Resend payload. Manual smoke checks:
 - Navigation anchors smoothly scroll to `#features`, `#spaces`, `#notify`.
 - Theme toggle updates the icon and persists across reloads.
 - Tooltips and hover interactions render correctly in the hero device section.

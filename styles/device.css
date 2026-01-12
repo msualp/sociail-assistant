@@ -9,6 +9,7 @@
     animation: float 6s ease-in-out infinite;
     z-index: 20;
     cursor: pointer;
+    will-change: transform;
 }
 
 /* Hey Sociail Text Animation */

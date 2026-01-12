@@ -20,6 +20,7 @@
     /* Border & UI */
     --border-color: rgba(0, 0, 0, 0.1);
     --screen-color: #3375e0;
+    --arrow-color: rgba(0, 102, 255, 0.6);
 }
 
 @media (prefers-color-scheme: dark) {
