@@ -15,16 +15,15 @@
 /* Hey Sociail Text Animation */
 .hey-sociail-text {
     position: absolute;
-    top: calc(40% - 65px);
+    bottom: calc(100% + 5px);
     left: 50%;
-    transform: translate(-50%, -100%);
+    transform: translateX(-50%);
     font-size: 32px;
     font-weight: 600;
     background: linear-gradient(135deg, #0066ff, #f9d949);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    animation: floatText 6s ease-in-out infinite;
     z-index: 30;
     text-align: center;
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -52,12 +51,6 @@
     0%, 100% { transform: translate(-50%, -50%) translateY(0) rotateX(0deg) rotateY(0deg); }
     25% { transform: translate(-50%, -50%) translateY(-20px) rotateX(5deg) rotateY(15deg); }
     75% { transform: translate(-50%, -50%) translateY(10px) rotateX(-5deg) rotateY(-15deg); }
-}
-
-@keyframes floatText {
-    0%, 100% { transform: translate(-50%, -100%) translateY(0); }
-    25% { transform: translate(-50%, -100%) translateY(-10px); }
-    75% { transform: translate(-50%, -100%) translateY(6px); }
 }
 
 .device-wrapper {
