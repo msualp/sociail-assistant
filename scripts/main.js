@@ -209,6 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const emailInput = document.querySelector('.email-input');
     const planInput = document.querySelector('input[name="plan"]');
     const pricingCards = document.querySelectorAll('.pricing-card');
+    const heroPrompt = document.querySelector('.hey-sociail-text');
     const revealGroups = [
         { selector: '.features-grid .feature-card', step: 80 },
         { selector: '.mobility-grid .mobility-box', step: 80 },
@@ -270,5 +271,84 @@ document.addEventListener('DOMContentLoaded', function() {
 
             revealTargets.forEach(el => observer.observe(el));
         }
+    }
+
+    if (heroPrompt) {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const basePrompt = heroPrompt.textContent;
+        const promptSets = {
+            assistant: [
+                '"Hey Sociail, start Focus Mode"',
+                '"Hey Sociail, capture this idea"',
+                '"Hey Sociail, switch to Work"'
+            ],
+            iphone: [
+                '"Hey Sociail, text my ETA"',
+                '"Hey Sociail, add a reminder"',
+                '"Hey Sociail, share my location"'
+            ],
+            laptop: [
+                '"Hey Sociail, summarize this doc"',
+                '"Hey Sociail, open the last draft"',
+                '"Hey Sociail, note this snippet"'
+            ]
+        };
+
+        let promptInterval = null;
+        let promptTimeout = null;
+
+        const updatePrompt = (text) => {
+            heroPrompt.classList.add('is-fading');
+            clearTimeout(promptTimeout);
+            promptTimeout = setTimeout(() => {
+                heroPrompt.textContent = text;
+                heroPrompt.classList.remove('is-fading');
+            }, 200);
+        };
+
+        const stopPromptCycle = () => {
+            clearInterval(promptInterval);
+            clearTimeout(promptTimeout);
+            promptInterval = null;
+            promptTimeout = null;
+            heroPrompt.classList.remove('is-hovering', 'is-fading');
+            heroPrompt.textContent = basePrompt;
+        };
+
+        const startPromptCycle = (key) => {
+            const prompts = promptSets[key];
+            if (!prompts) {
+                return;
+            }
+
+            clearInterval(promptInterval);
+            clearTimeout(promptTimeout);
+            heroPrompt.classList.add('is-hovering');
+
+            if (prefersReducedMotion) {
+                heroPrompt.textContent = prompts[0];
+                return;
+            }
+
+            let index = 0;
+            updatePrompt(prompts[index]);
+            promptInterval = setInterval(() => {
+                index = (index + 1) % prompts.length;
+                updatePrompt(prompts[index]);
+            }, 2200);
+        };
+
+        const hotspotMap = [
+            { selector: '.device-hotspot.assistant-hotspot', key: 'assistant' },
+            { selector: '.device-hotspot.iphone-hotspot', key: 'iphone' },
+            { selector: '.device-hotspot.laptop-hotspot', key: 'laptop' }
+        ];
+
+        hotspotMap.forEach(({ selector, key }) => {
+            document.querySelectorAll(selector).forEach(hotspot => {
+                hotspot.addEventListener('mouseenter', () => startPromptCycle(key));
+                hotspot.addEventListener('mouseleave', () => stopPromptCycle());
+            });
+        });
     }
 });
