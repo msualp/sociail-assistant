@@ -51,14 +51,11 @@ h1 {
 }
 
 .gradient-text {
-    background: linear-gradient(135deg, var(--sociail-yellow), var(--sociail-blue)) !important;
+    background: linear-gradient(135deg, var(--sociail-yellow), var(--sociail-blue));
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent !important;
-    color: transparent !important;
+    -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: none !important;
-    mix-blend-mode: normal;
-    isolation: isolate;
+    filter: none;
 }
 
 .hero-subtitle {
