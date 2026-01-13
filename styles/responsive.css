@@ -91,7 +91,7 @@
     
     /* Hey Sociail Text - Mobile */
     .hey-sociail-text {
-        top: 12%;
+        top: calc(40% - 65px);
         font-size: 24px;
         width: min(84vw, 420px);
         min-height: 2.8em;

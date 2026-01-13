@@ -278,19 +278,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const basePrompt = heroPrompt.textContent;
         const promptSets = {
             assistant: [
-                '"Hey Sociail, start Focus Mode"',
-                '"Hey Sociail, capture this idea"',
-                '"Hey Sociail, switch to Work"'
+                '"Start Focus Mode"',
+                '"Capture this idea"',
+                '"Switch to Work"'
             ],
             iphone: [
-                '"Hey Sociail, text my ETA"',
-                '"Hey Sociail, add a reminder"',
-                '"Hey Sociail, share my location"'
+                '"Text my ETA"',
+                '"Add a reminder"',
+                '"Share my location"'
             ],
             laptop: [
-                '"Hey Sociail, summarize this doc"',
-                '"Hey Sociail, open the last draft"',
-                '"Hey Sociail, note this snippet"'
+                '"Summarize this doc"',
+                '"Open the last draft"',
+                '"Note this snippet"'
             ]
         };
 
