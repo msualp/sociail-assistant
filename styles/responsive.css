@@ -137,7 +137,7 @@
     .iphone-silhouette {
         width: 80px;
         height: 160px;
-        left: 0;
+        left: -8px;
         top: 38%;
     }
 
@@ -152,7 +152,7 @@
     .device-hotspot.iphone-hotspot {
         width: 80px;
         height: 160px;
-        left: 0;
+        left: -8px;
         top: 38%;
     }
 
