@@ -21,6 +21,7 @@
     --border-color: rgba(0, 0, 0, 0.1);
     --screen-color: #3375e0;
     --arrow-color: rgba(0, 102, 255, 0.6);
+    --ease-out-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @media (prefers-color-scheme: dark) {

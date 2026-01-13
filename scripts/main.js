@@ -142,10 +142,9 @@ async function handleSubmit(e) {
 // Space bubble interaction
 document.querySelectorAll('.space-bubble').forEach(bubble => {
     bubble.addEventListener('click', function() {
-        const spaceName = this.textContent.trim().split('\n')[1];
-        this.style.transform = 'scale(1.1)';
+        bubble.classList.add('is-popping');
         setTimeout(() => {
-            this.style.transform = '';
+            bubble.classList.remove('is-popping');
         }, 300);
     });
 });
@@ -210,6 +209,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const emailInput = document.querySelector('.email-input');
     const planInput = document.querySelector('input[name="plan"]');
     const pricingCards = document.querySelectorAll('.pricing-card');
+    const revealGroups = [
+        { selector: '.features-grid .feature-card', step: 80 },
+        { selector: '.mobility-grid .mobility-box', step: 80 },
+        { selector: '.spaces-visual .space-bubble', step: 80 },
+        { selector: '.pricing-grid .pricing-card', step: 80 },
+        { selector: '.trust-signals .trust-signal', step: 60 }
+    ];
+
+    revealGroups.forEach(({ selector, step }) => {
+        document.querySelectorAll(selector).forEach((item, index) => {
+            item.classList.add('reveal');
+            item.style.setProperty('--reveal-delay', `${index * step}ms`);
+        });
+    });
+
     const revealTargets = document.querySelectorAll('.reveal');
 
     pricingCards.forEach((card) => {
