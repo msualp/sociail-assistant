@@ -93,6 +93,8 @@
     .hey-sociail-text {
         top: 12%;
         font-size: 24px;
+        width: min(84vw, 420px);
+        min-height: 2.8em;
     }
     
     /* Concentric Circles - Optimized for Mobile */

@@ -17,7 +17,7 @@
     position: absolute;
     top: 18%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) translateY(-3px);
     font-size: 32px;
     font-weight: 600;
     background: linear-gradient(135deg, #0066ff, #f9d949);
@@ -30,6 +30,12 @@
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     letter-spacing: -0.02em;
     filter: drop-shadow(0 2px 4px rgba(0, 102, 255, 0.3));
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: min(70vw, 560px);
+    min-height: 2.6em;
+    line-height: 1.2;
     transition: opacity 0.25s ease, filter 0.25s ease;
     will-change: opacity;
 }
