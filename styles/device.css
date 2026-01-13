@@ -274,7 +274,7 @@
 }
 
 .iphone-silhouette {
-    left: -25px;
+    left: 5px;
     top: 38%;
     transform: translateY(-50%) rotate(-8deg) scale(1);
     transform-origin: center;
@@ -315,7 +315,7 @@
 }
 
 .laptop-silhouette {
-    right: -100px;
+    right: -190px;
     top: 38%;
     transform: translateY(-50%) rotate(8deg) scale(1);
     transform-origin: center;
@@ -381,7 +381,7 @@
 
 /* Hotspot positioning - matches device positions */
 .device-hotspot.iphone-hotspot {
-    left: -25px;
+    left: 5px;
     top: 38%;
     transform: translateY(-50%);
     width: 140px;
@@ -390,7 +390,7 @@
 }
 
 .device-hotspot.laptop-hotspot {
-    right: -100px;
+    right: -190px;
     top: 38%;
     transform: translateY(-50%);
     width: 320px;

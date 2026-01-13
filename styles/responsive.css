@@ -137,14 +137,14 @@
     .iphone-silhouette {
         width: 80px;
         height: 160px;
-        left: -15px;
+        left: 0;
         top: 38%;
     }
 
     .laptop-silhouette {
         width: 180px;
         height: 120px;
-        right: -50px;
+        right: -90px;
         top: 38%;
     }
 
@@ -152,14 +152,14 @@
     .device-hotspot.iphone-hotspot {
         width: 80px;
         height: 160px;
-        left: -15px;
+        left: 0;
         top: 38%;
     }
 
     .device-hotspot.laptop-hotspot {
         width: 180px;
         height: 120px;
-        right: -50px;
+        right: -90px;
         top: 38%;
     }
 
