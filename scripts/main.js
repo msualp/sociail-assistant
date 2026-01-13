@@ -1,5 +1,57 @@
 // Main JavaScript functionality for Sociail Assistant landing page
 
+// Confetti celebration animation
+function triggerConfetti() {
+    // Respect reduced motion preference
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+
+    const container = document.createElement('div');
+    container.className = 'confetti-container';
+    document.body.appendChild(container);
+
+    const rootStyles = getComputedStyle(document.documentElement);
+    const cssVar = (name, fallback) => (rootStyles.getPropertyValue(name).trim() || fallback);
+
+    const colors = [
+        cssVar('--sociail-blue', '#0066ff'),
+        cssVar('--sociail-yellow', '#f9d949'),
+        cssVar('--success-color', '#34c759'),
+        cssVar('--warning-color', '#ff9500'),
+        cssVar('--error-color', '#ff3b30'),
+        '#5856d6', // Purple accent
+        '#00c7be'  // Teal accent
+    ];
+
+    const shapes = ['confetti-circle', 'confetti-square', 'confetti-ribbon'];
+    const particleCount = 80;
+
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        const shape = shapes[Math.floor(Math.random() * shapes.length)];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+
+        particle.className = `confetti ${shape}`;
+        particle.style.backgroundColor = color;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${-10 - Math.random() * 20}%`;
+        particle.style.animationDuration = `${2 + Math.random() * 2}s`;
+        particle.style.animationDelay = `${Math.random() * 0.5}s`;
+
+        // Add some horizontal drift
+        const drift = (Math.random() - 0.5) * 200;
+        particle.style.setProperty('--drift', `${drift}px`);
+
+        container.appendChild(particle);
+    }
+
+    // Clean up after animation
+    setTimeout(() => {
+        container.remove();
+    }, 5000);
+}
+
 // Smooth scrolling for navigation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -71,6 +123,7 @@ async function handleSubmit(e) {
             alert('Thanks! We will be in touch soon.');
         }
 
+        triggerConfetti();
         form.reset();
     } catch (error) {
         if (status) {
