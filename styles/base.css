@@ -51,7 +51,7 @@ h1 {
 }
 
 .gradient-text {
-    background: linear-gradient(135deg, var(--sociail-yellow), var(--sociail-blue));
+    background: linear-gradient(135deg, #0066ff, #f9d949);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;

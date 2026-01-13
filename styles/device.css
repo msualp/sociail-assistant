@@ -422,7 +422,7 @@
     z-index: 50;
     --assistant-scale: 1;
     --assistant-center-scale: 1;
-    --assistant-text-gap: calc(5px + (var(--assistant-scale, 1) - 1) * 40px);
+    --assistant-text-gap: calc(5px + (var(--assistant-scale, 1) - 1) * 60px);
 }
 
 .device-hotspot:hover {
