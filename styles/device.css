@@ -289,7 +289,7 @@
 }
 
 .iphone-silhouette {
-    left: -10px;
+    left: -32px;
     top: 38%;
     transform: translateY(-50%) rotate(-8deg) scale(1);
     transform-origin: center;
@@ -396,7 +396,7 @@
 
 /* Hotspot positioning - matches device positions */
 .device-hotspot.iphone-hotspot {
-    left: -10px;
+    left: -32px;
     top: 38%;
     transform: translateY(-50%);
     width: 140px;
