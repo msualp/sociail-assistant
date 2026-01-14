@@ -486,6 +486,7 @@
     width: min(70vw, 720px);
     max-width: 70vw;
     transform: translateX(-50%) translateY(10px);
+    z-index: 15;
 }
 
 .device-hotspot:hover .device-tooltip {
