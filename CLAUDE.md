@@ -4,25 +4,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Static landing page for Sociail Assistant, an AI hardware companion device. A lightweight Node server is included for email capture via Resend.
+Static landing page for Sociail Assistant, an AI hardware companion device. A lightweight Node server is included for email capture via Resend. Deployed to Vercel (see `vercel.json`).
 
 ## Development Commands
 
 ```bash
-# Open directly (macOS)
-open index.html
-
-# Serve locally (recommended for testing navigation and asset paths)
-python3 -m http.server 8000
-# Then visit http://localhost:8000
-
 # Serve locally with backend (email capture)
 npm install
 npm start
 # Then visit http://localhost:3000
 
-# Run tests (Node test runner)
+# Serve static files only (no backend)
+python3 -m http.server 8000
+# Then visit http://localhost:8000
+
+# Run all tests
 npm test
+
+# Run a single test file
+node --test tests/subscribe.test.js
+
+# Run tests matching a pattern
+node --test --test-name-pattern="invalid email"
 ```
 
 ## Architecture
@@ -64,4 +67,8 @@ npm test
 
 ## Commit Style
 
-Use Conventional Commits: `feat:`, `fix:`, etc. For UI changes, include before/after screenshots in PRs.
+Use Conventional Commits: `feat:`, `fix:`, `style:`, etc. For UI changes, include before/after screenshots in PRs.
+
+## Documentation
+
+Product docs and prototype assets live in `docs/`, including `docs/7-Sociail-Assistant/` for static HTML pages and `docs/prototype/` for STL/ZIP files. Large prototype ZIPs should not be unpacked into the repo.

@@ -187,3 +187,123 @@ Check before assembly:
 This prototype is **evidence**, not art.
 
 Print → hold → fix → repeat.
+
+---
+
+# v2.0 WORKFLOW (NEW)
+
+## 12. v2.0 Overview
+
+v2.0 is a **pill-shaped redesign** with Apple-inspired rounded aesthetics.
+- Dimensions: 85 × 35 × 14 mm
+- Form: Stadium/capsule profile
+- Tools: Fusion 360 → STL → Bambu Studio
+
+---
+
+## 13. Fusion 360 → STL Pipeline
+
+### 13.1 Source Files
+After CAD work, you should have:
+- `sociail_assistant_v2_0.f3d` (Fusion 360 source)
+- `sociail_assistant_v2_0.step` (universal exchange)
+
+### 13.2 Export Workflow
+1. Open Fusion 360 project
+2. For each body (top shell, bottom shell, each cutout):
+   - Right-click body → Save As Mesh
+   - Format: Binary STL
+   - Refinement: High
+   - Units: Millimeters
+3. Organize into canonical folder structure
+
+---
+
+## 14. v2.0 Print Profiles (Curved Surfaces)
+
+### 14.1 Settings for Pill Shape
+
+| Setting | Iteration | Hero |
+|---------|-----------|------|
+| Layer height | 0.12 mm | 0.08 mm |
+| Walls | 4 | 4–5 |
+| Infill | 12% gyroid | 15% gyroid |
+| Top layers | 6 | 8 |
+| Outer wall speed | 50 mm/s | 40 mm/s |
+| Ironing | OFF | ON (top surfaces) |
+| Seam | Aligned | Aligned (parting edge) |
+| Supports | OFF | OFF |
+
+### 14.2 Why 0.08mm for Hero Prints
+Curved surfaces show "stair-stepping" at layer boundaries.
+Finer layers minimize this effect on the rounded pill profile.
+
+---
+
+## 15. v2.0 Print Orientation
+
+**Top shell (pill_top)**
+- Flip upside-down
+- Hero surface flat against bed
+- Curved profile prints without supports
+
+**Bottom shell (pill_bottom)**
+- Upright, cavity facing up
+- USB-C end prints sideways (acceptable)
+
+---
+
+## 16. v2.0 Post-Processing (Premium Finish)
+
+### 16.1 Sanding Curved Surfaces
+Use **foam sanding blocks** to maintain radii.
+Flat blocks will create flat spots on curves.
+
+| Step | Grit | Method |
+|------|------|--------|
+| 1 | 320 | Wet sand, remove layer lines |
+| 2 | 400 | Wet sand, smooth |
+| 3 | 600 | Wet sand, pre-primer |
+| 4 | 800 | Dry, light final pass |
+
+### 16.2 Finishing
+1. Filler primer (2 light coats)
+2. Spot putty any defects
+3. Light sand (600)
+4. Final primer
+5. Top coat:
+   - **Matte spray** for soft premium feel
+   - **2K automotive clear** for Apple-style gloss
+
+### 16.3 Color Options
+- Space Gray (dark gunmetal)
+- Arctic White (bright clean)
+
+---
+
+## 17. v2.0 Validation Checklist
+
+- [ ] USB-C connector inserts smoothly
+- [ ] LED window aligned with top surface
+- [ ] Button well centered and tactile
+- [ ] Mic holes unobstructed
+- [ ] Speaker grill clear
+- [ ] Snap-fit engages with click
+- [ ] Parting line gap < 0.15 mm
+- [ ] No visible flat spots on curves
+- [ ] Feels balanced in hand
+- [ ] Comfortable to pass around
+
+---
+
+## 18. v2.0 Iteration Rules
+
+Same principles as v1.2:
+- Change one variable at a time
+- Reprint only affected part
+- Never redesign everything at once
+
+For curved surfaces specifically:
+- If flat spots appear → check sanding technique
+- If layer lines visible → reduce layer height
+- If seam visible → adjust seam position in slicer

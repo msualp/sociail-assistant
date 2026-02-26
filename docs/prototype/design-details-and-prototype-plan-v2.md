@@ -130,3 +130,105 @@ sociail_assistant_enclosure_v1_2_FULL_W55_negative_cutouts.zip
 ## 9. Guiding Principle
 
 **Print it. Hold it. Iterate.**
+
+---
+
+# v2.0 Design — Modern Pill Form (NEW)
+
+## 10. v2.0 Design Overview
+
+**Form factor**
+- Pill/capsule shape (stadium profile)
+- Compact, pocketable form
+- Apple-inspired rounded aesthetics
+
+**Outer dimensions**
+- Length: **85 mm**
+- Width: **35 mm**
+- Thickness: **14 mm**
+
+**Key changes from v1.2**
+- 77% volume reduction
+- Continuous 4mm edge fillets
+- Recessed features (USB-C pocket, LED inset)
+- 60/40 shell split (vs 50/50)
+- G2 curvature continuity
+
+---
+
+## 11. v2.0 Files & Naming Convention
+
+### Canonical ZIP (v2.0)
+
+```
+sociail_assistant_enclosure_v2_0_W35/
+```
+
+### Inside the ZIP
+
+**Main printable parts**
+- sociail_assistant_pill_top_v2_0_W35.stl
+- sociail_assistant_pill_bottom_v2_0_W35.stl
+
+**Negative cutouts (used in Bambu Studio)**
+- neg_usb_c_left_recess_v2_0.stl
+- neg_led_window_rounded_v2_0.stl
+- neg_button_well_v2_0.stl
+- neg_mic_perforations_v2_0.stl
+- neg_speaker_grill_v2_0.stl
+- neg_screw_bosses_4x_v2_0.stl (optional)
+
+**Source files**
+- sociail_assistant_v2_0.f3d (Fusion 360)
+- sociail_assistant_v2_0.step (Universal exchange)
+
+---
+
+## 12. v2.0 CAD Workflow (Fusion 360)
+
+### Parametric Setup
+```
+overall_length    = 85 mm
+overall_width     = 35 mm
+overall_height    = 14 mm
+end_radius        = 17.5 mm
+edge_fillet       = 4 mm
+wall_thickness    = 2.6 mm
+split_height      = 8.4 mm
+```
+
+### Modeling Steps
+1. Create stadium profile sketch (rectangle + semicircle ends)
+2. Extrude to target height
+3. Apply 4mm G2 fillets to all edges
+4. Shell with 2.6mm wall thickness
+5. Split body at Z = 8.4mm
+6. Add alignment tongue-and-groove lip
+7. Add 4x cantilever snap-fits at corners
+8. Export as separate STL files
+
+---
+
+## 13. v2.0 Feature Specifications
+
+| Feature | Spec |
+|---------|------|
+| USB-C | Recessed pocket 14×8×3mm, opening 9.5×3.5mm |
+| LED bar | 55mm pill-shaped, 0.5mm recessed |
+| Button | 12mm well, 1.5mm deep, 6mm through-hole |
+| Mic array | 5 holes × 1.2mm, 4mm spacing |
+| Speaker | 3×5 grid, 2×4mm stadium slots |
+
+See `sociail_assistant_v2_0_design_spec.md` for complete specifications.
+
+---
+
+## 14. v1.2 vs v2.0 Comparison
+
+| Aspect | v1.2 | v2.0 |
+|--------|------|------|
+| Dimensions | 150×55×22 mm | 85×35×14 mm |
+| Form | Rectangular bar | Pill/capsule |
+| Edges | Sharp | 4mm continuous fillets |
+| Volume | ~181,500 mm³ | ~41,650 mm³ |
+| Aesthetic | Functional | Apple-inspired |
