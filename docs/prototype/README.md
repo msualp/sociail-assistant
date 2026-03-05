@@ -7,6 +7,9 @@ This directory is organized by hardware generation.
 - `v2/` pill form factor (W35) with base and snap-tuned variants
 - `v3/` MagSafe form factor with draft and polished iterations
 
+## Modules
+- `modules/button-module-22-24-v1/`: 24mm-default plunger/bezel/cutout button module
+
 ## Naming
 - Main shells: `shell-top.stl`, `shell-bottom.stl`
 - Direct-print shells: `shell-top-print*.stl`, `shell-bottom-print*.stl`

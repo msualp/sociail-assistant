@@ -111,10 +111,65 @@ Assembly intent:
 3) Set `THINKING` chase at 30% brightness → record.
 4) Trigger 20 wake events in a row → confirm no brownouts.
 
+
 **Power gotchas:**
 - WS2812 LEDs at full brightness can pull 60 mA/LED × 8 = 480 mA (brownout risk)
 - Always cap LED brightness in firmware: `brightness = min(brightness, 76)` (30%)
 - ESP32-S3 Wi-Fi (if enabled) adds 100+ mA — keep Wi-Fi off in v1
+
+### 2.5 Center Button Module (default 24mm, alternate 22mm)
+
+**Goal:** a single, large, “premium-feel” center button that is thumb-sized **and** does **not** get accidentally pressed when the iPhone (with gizmo attached) is placed back-down on a table.
+
+#### Compact rationale
+- **24mm (default):** easier thumb hit rate, stronger demo feel, better with gloves.
+- **22mm (alternate):** subtler look and slightly less accidental-contact risk.
+
+#### Strategy (fast + controllable)
+We separate **feel** (mechanics) from **electrical reliability** (switch):
+- **Switch (electrical):** Adafruit **Soft Silicone Top 6mm** tact switch (soft/grippy top, consistent electrical behavior).
+- **Plunger (feel):** 3D printed **TPU 95A** concave plunger that enlarges the tact switch into a single “thumb button”.
+- **Feel tuning:** add **one** of:
+  - a small **~1mm foam disk** between plunger stem and switch (softer + quieter), or
+  - a tiny **6mm silicone bumper dot** (elastomer nub; snappy + damped)
+
+#### Preventing accidental presses (non-negotiable)
+Concavity helps, but the real protection is geometry:
+- Add a **guard bezel** around the button that is **0.8–1.2mm taller** than the highest point of the plunger rim.
+- Seat the plunger so its top surface sits **0.3–0.7mm below** the bezel height.
+- Firmware gating: require **press-and-hold 150–250ms** to register a press.
+- **Bezel material:** the guard bezel should be **rigid** (PLA/PETG) for true anti-press behavior; TPU bezels can compress and still trigger the switch.
+
+#### What we will build
+Two interchangeable test articles:
+- **Prototype A:** 22mm concave TPU plunger + bezel guard
+- **Prototype B:** 24mm concave TPU plunger + bezel guard
+
+#### Mechanical targets (starting values)
+- Plunger OD: **22.0mm** (A) / **24.0mm** (B)
+- Cutout/hole in top shell: **OD + 0.6mm** (clearance)
+- Bezel OD: **plunger OD + 4mm**
+- Bezel height above shell: **~1.0mm**
+- Plunger top sits: **~0.5mm below bezel top**
+- Button travel: **~0.8–1.2mm** total
+
+#### Print guidance
+- **TPU plungers:** TPU 95A, 0.16–0.20mm layers, 3–4 walls, 15–25% gyroid, slow TPU profile
+- **Bezel guards:** PLA/PETG (or TPU), 0.16–0.20mm layers, 3 walls, 10–15% infill
+
+#### Prototype assets
+Canonical module assets:
+- `prototype/modules/button-module-22-24-v1/`
+- `prototype/modules/button-module-22-24-v1.zip`
+
+Contains: plungers, rigid bezel guards, and negative cutouts for Bambu Studio
+
+Assembly summary:
+1) Use the `neg_button_cutout_XXmm.stl` as a **Negative Part** in Bambu Studio to cut the top-shell opening.
+2) Print the TPU plunger.
+3) Print (or temporarily glue) the bezel guard.
+4) Mount the tact switch under the opening so the plunger stem contacts it.
+5) Add foam disk or silicone nub to tune feel.
 
 ---
 
@@ -177,11 +232,13 @@ Use if you want always-on wake word without draining battery.
 | **WS2812B LED Strip (8 LEDs)** | 1 | [Amazon B088BPGMXB](https://www.amazon.com/dp/B088BPGMXB) | Cut to 8 LEDs; get 60/m density |
 | **LiPo Battery 3.7V 1000mAh** | 2 | [Amazon B0BNX2GWMS](https://www.amazon.com/dp/B0BNX2GWMS) | Often ships with **JST-PH 2.0**. If so, cut/replace the connector or use a pigtail. You will solder to BAT pads either way. |
 | **LiPo Battery 3.7V 1000mAh (bare leads recommended)** | 2 | [eBay 184727700211](https://www.ebay.com/itm/184727700211) | Recommended: commonly sold as a “battery only” cell with wire leads (verify photos). Solder leads to BAT pads. |
-If you don’t want to solder connectors, buy the **bare-leads** option.
-| **Tactile Button 6×6mm** | 10 | [Amazon B07CG7VTGD](https://www.amazon.com/dp/B07CG7VTGD) | Pack of many; you'll use one |
+| **Adafruit Soft Silicone Top 6mm Push-buttons (20-pack)** | 1 | [Adafruit 4183](https://www.adafruit.com/product/4183) | Soft/grippy top; ideal under a large plunger |
 | **MagSafe Magnet Ring** | 2 | [Amazon B09TQYTCC1](https://www.amazon.com/dp/B09TQYTCC1) | Adhesive-backed |
 | **Battery pigtail (1.25mm PicoBlade or bare leads)** | 1 | (any) | Use this if your LiPo connector doesn’t match. Solder pigtail/bare leads to BAT pads. |
 | **Silicone Wire 26AWG** | 1 | [Amazon B089D11WVN](https://www.amazon.com/dp/B089D11WVN) | Flexible for wiring |
+| **TPU 95A filament (for plungers)** | 1 | [Bambu TPU 95A HF](https://us.store.bambulab.com/products/tpu-95a-hf) | Print concave plungers (22mm + 24mm) |
+| **1mm adhesive foam dots (feel tuning)** | 1 | [Amazon foam dots search](https://www.amazon.com/s?k=double+sided+foam+dots) | Cut to ~6–8mm disks for plunger cushion |
+| **6mm×2mm silicone bumper dots (feel tuning)** | 1 | [Amazon B016GXAZOA](https://www.amazon.com/dp/B016GXAZOA) | Works as elastomer nub + anti-rattle |
 
 **Recommended for v1 (because you asked for battery-led):**
 | Item | Qty | Link | Notes |
@@ -191,6 +248,8 @@ If you don’t want to solder connectors, buy the **bare-leads** option.
 | INMP441 I2S Mic | 1 | [Amazon B09B9HGVDP](https://www.amazon.com/dp/B09B9HGVDP) | External mic if built-in is insufficient |
 
 **Total estimated cost:** ~$45–60 for core components
+
+> **Tip:** If you don’t want to solder connectors, buy the **bare-leads** option.
 
 **Connector warning (do not skip):** Seeed’s XIAO ESP32S3 docs show the battery is connected by **soldering to BAT pads**. Do **not** assume your LiPo’s JST connector will plug in. Many Amazon LiPos are **JST-PH 2.0** and will not mate with 1.25mm PicoBlade leads (and the XIAO board may not have a mating connector at all). Plan on **soldering** or using a pigtail/adapter.
 

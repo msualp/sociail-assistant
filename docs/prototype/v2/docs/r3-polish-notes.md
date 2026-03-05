@@ -13,6 +13,13 @@ This pass upgrades the v2 handled form factor with a cleaner industrial design w
   - `r3-mid`
   - `r3-tight`
 
+## Button Module Integration
+- Default module is `24mm` plunger (`24.6mm` shell cutout), with `22mm` kept as alternate.
+- Button is centered (`x=0, y=0`) for balanced handheld thumb ergonomics.
+- Added a local flat island under the button bezel on the curved top to prevent plunger rocking.
+- Bezel assumption is rigid PLA/PETG for anti-press behavior.
+- LED window was narrowed and moved forward to clear the larger center button.
+
 ## Retention tuning values
 | Variant | Lip Clearance | Snap Engage | Tab Thick | Slot Depth | Notch Extra |
 |---|---:|---:|---:|---:|---:|
@@ -39,6 +46,11 @@ Single-file sheet STLs are generated at `prototype/v2/sheets/` via:
 
 Bundle:
 - `prototype/v2/r3-sheets.zip`
+
+Includes:
+- pair sheets (loose/mid/tight, screws/no-screws)
+- 6-up A/B/C sheets (screws/no-screws)
+- bottoms-only 3-up A/B/C sheets (screws/no-screws)
 
 ## Orientation baseline (Bambu)
 - Top shell: upside-down (hero side on bed)
