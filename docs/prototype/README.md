@@ -12,6 +12,7 @@ This directory is organized by hardware generation.
 - Direct-print shells: `shell-top-print*.stl`, `shell-bottom-print*.stl`
 - Subtractive parts: `neg-*.stl`
 - Build scripts: `scripts/build-assets-*.py`
+- Sheet builders: `scripts/build-*-sheets.py`
 - Bundle archives: `*.zip`
 
 ## v1
@@ -32,6 +33,9 @@ This directory is organized by hardware generation.
 - First polished pass: `v3/polished-r1/`
 - A/B snap tuning: `v3/r2-loose/`, `v3/r2-tight/`
 - Production polish pass: `v3/r3/`
-- R3 A/B snap tuning: `v3/r3-loose/`, `v3/r3-tight/`
+- R3 A/B/C snap tuning: `v3/r3-loose/`, `v3/r3-mid/`, `v3/r3-tight/`
+- Internal component-fit variants: `v3/r3-internals-v1/`, `v3/r3-internals-v1-loose/`, `v3/r3-internals-v1-tight/`
+- Single-file plates: `v3/sheets/`
+- PCB keepout templates: `v3/templates/`
 - Builder scripts: `v3/scripts/`
 - Quick-load bundles: `v3/*.zip`
