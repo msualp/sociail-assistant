@@ -25,8 +25,11 @@ This directory is organized by hardware generation.
 - Base geometry: `v2/base/`
 - Looser snap tuning: `v2/r2-loose/`
 - Tighter snap tuning: `v2/r2-tight/`
+- Production polish pass: `v2/r3-mid/`
+- R3 A/B snap tuning: `v2/r3-loose/`, `v2/r3-tight/`
+- Single-file plates: `v2/sheets/`
 - Builders: `v2/scripts/`
-- Archives: `v2/zips/`
+- Quick-load bundles: `v2/*.zip`
 
 ## v3
 - Original draft: `v3/draft/`
