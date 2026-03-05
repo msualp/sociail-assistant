@@ -152,9 +152,16 @@ def build_6up_sheet(
             tm, was_flipped = orient_top_for_less_support(tm)
             if was_flipped:
                 flipped += 1
+        if rotate_all_y_90:
+            tm = rotate_y_90(tm)
         tops.append(tm)
 
-    bottoms = [load_mesh(ROOT / v / bottom_file) for v in variants]
+    bottoms = []
+    for v in variants:
+        bm = load_mesh(ROOT / v / bottom_file)
+        if rotate_all_y_90:
+            bm = rotate_y_90(bm)
+        bottoms.append(bm)
     all_meshes = tops + bottoms
 
     max_w = max(extent_xy(m)[0] for m in all_meshes)
@@ -229,6 +236,7 @@ def main() -> None:
         "shell-bottom-print.stl",
         "r3-abc-6up-sheet.stl",
         optimize_tops=True,
+        rotate_all_y_90=True,
     )
     summary.append(f"{name}: {dims[0]:.1f} x {dims[1]:.1f} x {dims[2]:.1f} mm")
 
@@ -297,7 +305,8 @@ Single-file plate STLs for quick Bambu Studio imports.
 - Pair sheets are intended for one-variant print jobs.
 - Screw pair sheets use `shell-*-print-screws.stl` sources.
 - 6-up sheets are intended for larger beds (roughly 256x256 class).
-- 6-up top rows are auto-oriented to reduce support demand.
+- `r3-abc-6up-sheet.stl` is side-oriented to reduce floating-cantilever warnings.
+- Other 6-up top rows are auto-oriented to reduce support demand.
 - For internals fit A/B testing without cantilever warnings, use bottoms-only 3-up sheets.
 - In Bambu Studio, you can keep as-is or use "Split to Objects" for per-part controls.
 """,
