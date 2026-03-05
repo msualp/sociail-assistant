@@ -10,6 +10,8 @@ Outputs:
 - prototype/v2/sheets/r3-tight-pair-sheet-screws.stl
 - prototype/v2/sheets/r3-abc-6up-sheet.stl
 - prototype/v2/sheets/r3-abc-6up-sheet-screws.stl
+- prototype/v2/sheets/r3-abc-bottoms-3up-sheet.stl
+- prototype/v2/sheets/r3-abc-bottoms-3up-sheet-screws.stl
 
 These are single-file imports for Bambu Studio.
 """
@@ -137,6 +139,33 @@ def build_6up_sheet(
     return out_file.name, dims
 
 
+def build_3up_row_sheet(
+    variants: list[str],
+    mesh_file: str,
+    out_name: str,
+    gap_x: float = 8.0,
+    rotate_for_fit: bool = True,
+) -> tuple[str, tuple[float, float, float]]:
+    if len(variants) != 3:
+        raise ValueError("3-up row expects exactly 3 variants")
+
+    meshes = [load_mesh(ROOT / v / mesh_file) for v in variants]
+    if rotate_for_fit:
+        meshes = [rotate_z_90(m) for m in meshes]
+
+    max_w = max(extent_xy(m)[0] for m in meshes)
+    pitch_x = max_w + gap_x
+    xs = [-pitch_x, 0.0, pitch_x]
+
+    placed_meshes: list[trimesh.Trimesh] = []
+    for i, m in enumerate(meshes):
+        placed_meshes.append(placed(m, xs[i], 0.0))
+
+    out_file = OUT / out_name
+    dims = write_mesh(out_file, placed_meshes)
+    return out_file.name, dims
+
+
 def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
 
@@ -175,6 +204,20 @@ def main() -> None:
     )
     summary.append(f"{name}: {dims[0]:.1f} x {dims[1]:.1f} x {dims[2]:.1f} mm")
 
+    name, dims = build_3up_row_sheet(
+        VARIANTS,
+        "shell-bottom-print.stl",
+        "r3-abc-bottoms-3up-sheet.stl",
+    )
+    summary.append(f"{name}: {dims[0]:.1f} x {dims[1]:.1f} x {dims[2]:.1f} mm")
+
+    name, dims = build_3up_row_sheet(
+        VARIANTS,
+        "shell-bottom-print-screws.stl",
+        "r3-abc-bottoms-3up-sheet-screws.stl",
+    )
+    summary.append(f"{name}: {dims[0]:.1f} x {dims[1]:.1f} x {dims[2]:.1f} mm")
+
     (OUT / "README.md").write_text(
         """# v2 R3 Sheet Files
 
@@ -189,11 +232,13 @@ Single-file plate STLs for quick Bambu Studio imports.
 - `r3-tight-pair-sheet-screws.stl`: top+bottom screw-hole print shells for r3-tight
 - `r3-abc-6up-sheet.stl`: loose/mid/tight top+bottom together (6 parts)
 - `r3-abc-6up-sheet-screws.stl`: loose/mid/tight top+bottom screw-hole set (6 parts)
+- `r3-abc-bottoms-3up-sheet.stl`: loose/mid/tight bottoms only (3 parts)
+- `r3-abc-bottoms-3up-sheet-screws.stl`: loose/mid/tight bottoms only with screw holes (3 parts)
 
 ## Notes
 - Pair sheets are intended for one-variant print jobs.
 - Screw pair sheets use `shell-*-print-screws.stl` sources.
-- 6-up sheets are rotated in-plane for better 256-class bed fit.
+- 6-up and 3-up sheets are rotated in-plane for better 256-class bed fit.
 - In Bambu Studio, keep as-is or use "Split to Objects" for per-part controls.
 """,
         encoding="utf-8",

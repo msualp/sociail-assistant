@@ -42,6 +42,21 @@ SNAP_LENGTH_Z = 8.0
 SNAP_DEFLECTION = 0.8
 SNAP_ENGAGE = 0.55
 
+# 24mm button module defaults (22mm remains alternate).
+BUTTON_CENTER_X = 0.0
+BUTTON_CENTER_Y = 0.0
+BUTTON_PLUNGER_OD = 24.0
+BUTTON_CUTOUT_OD = BUTTON_PLUNGER_OD + 0.6
+BUTTON_BEZEL_OD = BUTTON_PLUNGER_OD + 4.0
+BUTTON_ISLAND_OD = BUTTON_BEZEL_OD + 2.0
+BUTTON_ISLAND_RECESS = 0.6
+
+# LED moved forward and narrowed to clear 24mm center button.
+LED_LENGTH = 40.0
+LED_WIDTH = 3.2
+LED_END_R = 1.6
+LED_Y = 14.5
+
 
 @dataclass
 class BoxSpec:
@@ -202,7 +217,22 @@ def build_outer_body() -> mr.Mesh:
     cy = (bbox.min.y + bbox.max.y) / 2
     dz = -bbox.min.z
     outer.transform(mr.AffineXf3f.translation(vec(-cx, -cy, dz)))
-    return outer
+    return apply_button_flat_island(outer)
+
+
+def apply_button_flat_island(body: mr.Mesh) -> mr.Mesh:
+    island_r = BUTTON_ISLAND_OD / 2.0
+    cutter_h = 6.0
+    island_z = HEIGHT - BUTTON_ISLAND_RECESS
+    cutter = cyl_z(
+        island_r,
+        cutter_h,
+        BUTTON_CENTER_X,
+        BUTTON_CENTER_Y,
+        island_z + cutter_h / 2.0,
+        128,
+    )
+    return boolean(body, cutter, mr.BooleanOperation.DifferenceAB, "button_island_flat")
 
 
 def build_inner_body(outer: mr.Mesh) -> mr.Mesh:
@@ -363,20 +393,20 @@ def neg_usb_c_left_recess() -> mr.Mesh:
 
 
 def neg_led_window_rounded() -> mr.Mesh:
-    depth = 3.2
+    depth = 3.0
     zc = HEIGHT - depth / 2
-    yc = 12.0
+    yc = LED_Y
 
-    center = box_mesh(BoxSpec(47.0, 8.0, depth, 0.0, yc, zc))
-    left = cyl_z(4.0, depth, -23.5, yc, zc, 96)
-    right = cyl_z(4.0, depth, 23.5, yc, zc, 96)
+    center_len = LED_LENGTH - 2.0 * LED_END_R
+    center = box_mesh(BoxSpec(center_len, LED_WIDTH, depth, 0.0, yc, zc))
+    left = cyl_z(LED_END_R, depth, -center_len / 2.0, yc, zc, 96)
+    right = cyl_z(LED_END_R, depth, center_len / 2.0, yc, zc, 96)
     return fuse_union([center, left, right], "neg_led")
 
 
 def neg_button_well() -> mr.Mesh:
-    well = cyl_z(6.0, 1.5, 0.0, 0.0, HEIGHT - 0.75, 96)
-    through = cyl_z(3.0, 4.0, 0.0, 0.0, HEIGHT - 2.0, 96)
-    return fuse_union([well, through], "neg_button")
+    cutout = cyl_z(BUTTON_CUTOUT_OD / 2.0, 10.0, BUTTON_CENTER_X, BUTTON_CENTER_Y, HEIGHT - 5.0, 128)
+    return cutout
 
 
 def neg_mic_perforations() -> mr.Mesh:
