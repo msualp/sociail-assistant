@@ -10,6 +10,14 @@ Single-file plate STLs for quick Bambu Studio imports.
 - `r3-mid-pair-sheet-screws.stl`: top+bottom screw-hole print shells for r3-mid
 - `r3-tight-pair-sheet-screws.stl`: top+bottom screw-hole print shells for r3-tight
 - `r3-abc-6up-sheet.stl`: loose/mid/tight top+bottom together (6 parts)
+- `r3-abc-6up-kit-sheet.stl`: loose/mid/tight top+bottom + 24mm button plungers/bezel guards (12 parts)
+- `r3-abc-buttons-6up-sheet.stl`: three 24mm plungers + three 24mm bezels only (6 parts)
+- `r3-case-a-sheet.stl`: case material-test pair A (maps to r3-loose)
+- `r3-case-b-sheet.stl`: case material-test pair B (maps to r3-mid)
+- `r3-case-c-sheet.stl`: case material-test pair C (maps to r3-tight)
+- `r3-button-a-sheet.stl`: button material-test pair A (24mm plunger + bezel)
+- `r3-button-b-sheet.stl`: button material-test pair B (24mm plunger + bezel)
+- `r3-button-c-sheet.stl`: button material-test pair C (24mm plunger + bezel)
 - `r3-abc-6up-sheet-screws.stl`: loose/mid/tight top+bottom screw-hole set (6 parts)
 - `r3-internals-v1-abc-6up-sheet.stl`: internals loose/base/tight top+bottom together (6 parts)
 - `r3-internals-v1-abc-6up-sheet-screws.stl`: internals loose/base/tight screw-hole set (6 parts)
@@ -21,5 +29,9 @@ Single-file plate STLs for quick Bambu Studio imports.
 - Screw pair sheets use `shell-*-print-screws.stl` sources.
 - 6-up sheets are intended for larger beds (roughly 256x256 class).
 - 6-up top rows are auto-oriented to reduce support demand.
+- `r3-abc-6up-kit-sheet.stl` adds three 24mm plungers and three 24mm bezels for one-cycle A/B/C print runs.
+- For AMS material trials with less purge, use `r3-abc-6up-sheet.stl` (cases) plus `r3-abc-buttons-6up-sheet.stl` (buttons) on separate plates.
+- A/B/C mapping: `A=r3-loose`, `B=r3-mid`, `C=r3-tight`.
+- Fast AMS workflow: import `r3-case-a/b/c-sheet.stl` and `r3-button-a/b/c-sheet.stl` together, then assign filament by object name.
 - For internals fit A/B testing without cantilever warnings, use bottoms-only 3-up sheets.
 - In Bambu Studio, you can keep as-is or use "Split to Objects" for per-part controls.

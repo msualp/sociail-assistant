@@ -11,6 +11,13 @@ Outputs:
 - prototype/v3/sheets/r3-tight-pair-sheet-screws.stl
 - prototype/v3/sheets/r3-abc-6up-sheet.stl
 - prototype/v3/sheets/r3-abc-6up-sheet-screws.stl
+- prototype/v3/sheets/r3-abc-buttons-6up-sheet.stl
+- prototype/v3/sheets/r3-case-a-sheet.stl
+- prototype/v3/sheets/r3-case-b-sheet.stl
+- prototype/v3/sheets/r3-case-c-sheet.stl
+- prototype/v3/sheets/r3-button-a-sheet.stl
+- prototype/v3/sheets/r3-button-b-sheet.stl
+- prototype/v3/sheets/r3-button-c-sheet.stl
 - prototype/v3/sheets/r3-internals-v1-abc-6up-sheet.stl
 - prototype/v3/sheets/r3-internals-v1-abc-6up-sheet-screws.stl
 - prototype/v3/sheets/r3-internals-v1-bottoms-3up-sheet.stl
@@ -30,7 +37,9 @@ import trimesh
 ROOT = Path("prototype/v3")
 OUT = ROOT / "sheets"
 VARIANTS = ["r3-loose", "r3-mid", "r3-tight"]
+VARIANT_LABELS = [("a", "r3-loose"), ("b", "r3-mid"), ("c", "r3-tight")]
 VARIANTS_INTERNALS = ["r3-internals-v1-loose", "r3-internals-v1", "r3-internals-v1-tight"]
+MODULE_BUTTONS = Path("prototype/modules/button-module-22-24-v1")
 
 
 def load_mesh(path: Path) -> trimesh.Trimesh:
@@ -186,6 +195,167 @@ def build_6up_sheet(
     return out_file.name, dims
 
 
+def build_6up_kit_sheet(
+    variants: list[str],
+    top_file: str,
+    bottom_file: str,
+    out_name: str,
+    gap_x: float = 10.0,
+    gap_y: float = 12.0,
+    button_gap_y: float = 10.0,
+    button_gap_x: float = 8.0,
+    optimize_tops: bool = False,
+    force_flip_tops: bool = False,
+    rotate_all_y_90: bool = False,
+) -> tuple[str, tuple[float, float, float]]:
+    if len(variants) != 3:
+        raise ValueError("6-up sheet expects exactly 3 variants")
+
+    tops: list[trimesh.Trimesh] = []
+    for v in variants:
+        tm = load_mesh(ROOT / v / top_file)
+        if force_flip_tops:
+            tm = flip_x_180(tm)
+        elif optimize_tops:
+            tm, _ = orient_top_for_less_support(tm)
+        if rotate_all_y_90:
+            tm = rotate_y_90(tm)
+        tops.append(tm)
+
+    bottoms: list[trimesh.Trimesh] = []
+    for v in variants:
+        bm = load_mesh(ROOT / v / bottom_file)
+        if rotate_all_y_90:
+            bm = rotate_y_90(bm)
+        bottoms.append(bm)
+
+    all_shells = tops + bottoms
+    max_shell_w = max(extent_xy(m)[0] for m in all_shells)
+    max_shell_h = max(extent_xy(m)[1] for m in all_shells)
+    pitch_x = max_shell_w + gap_x
+    pitch_y = max_shell_h + gap_y
+
+    xs = [-pitch_x, 0.0, pitch_x]
+    y_top = pitch_y / 2.0
+    y_bottom = -pitch_y / 2.0
+
+    placed_meshes: list[trimesh.Trimesh] = []
+    for i, m in enumerate(tops):
+        placed_meshes.append(placed(m, xs[i], y_top))
+    for i, m in enumerate(bottoms):
+        placed_meshes.append(placed(m, xs[i], y_bottom))
+
+    plunger = load_mesh(MODULE_BUTTONS / "plunger_concave_24mm.stl")
+    bezel = load_mesh(MODULE_BUTTONS / "bezel_guard_24mm.stl")
+    if rotate_all_y_90:
+        plunger = rotate_y_90(plunger)
+        bezel = rotate_y_90(bezel)
+
+    plunger_w, plunger_h = extent_xy(plunger)
+    bezel_w, bezel_h = extent_xy(bezel)
+    button_pitch_x = max(plunger_w, bezel_w) + button_gap_x
+    button_xs = [-button_pitch_x, 0.0, button_pitch_x]
+
+    shells_y_max = y_top + max_shell_h / 2.0
+    shells_y_min = y_bottom - max_shell_h / 2.0
+    y_plungers = shells_y_max + button_gap_y + plunger_h / 2.0
+    y_bezels = shells_y_min - button_gap_y - bezel_h / 2.0
+
+    for x in button_xs:
+        placed_meshes.append(placed(plunger, x, y_plungers))
+    for x in button_xs:
+        placed_meshes.append(placed(bezel, x, y_bezels))
+
+    out_file = OUT / out_name
+    dims = write_mesh(out_file, placed_meshes)
+    return out_file.name, dims
+
+
+def build_button_6up_sheet(
+    out_name: str,
+    plunger_file: str = "plunger_concave_24mm.stl",
+    bezel_file: str = "bezel_guard_24mm.stl",
+    gap_x: float = 8.0,
+    gap_y: float = 8.0,
+    rotate_all_y_90: bool = False,
+) -> tuple[str, tuple[float, float, float]]:
+    plunger = load_mesh(MODULE_BUTTONS / plunger_file)
+    bezel = load_mesh(MODULE_BUTTONS / bezel_file)
+
+    if rotate_all_y_90:
+        plunger = rotate_y_90(plunger)
+        bezel = rotate_y_90(bezel)
+
+    plunger_w, plunger_h = extent_xy(plunger)
+    bezel_w, bezel_h = extent_xy(bezel)
+    pitch_x = max(plunger_w, bezel_w) + gap_x
+    pitch_y = max(plunger_h, bezel_h) + gap_y
+
+    xs = [-pitch_x, 0.0, pitch_x]
+    y_top = pitch_y / 2.0
+    y_bottom = -pitch_y / 2.0
+
+    placed_meshes: list[trimesh.Trimesh] = []
+    for x in xs:
+        placed_meshes.append(placed(plunger, x, y_top))
+    for x in xs:
+        placed_meshes.append(placed(bezel, x, y_bottom))
+
+    out_file = OUT / out_name
+    dims = write_mesh(out_file, placed_meshes)
+    return out_file.name, dims
+
+
+def build_case_material_sheet(
+    variant: str,
+    top_file: str,
+    bottom_file: str,
+    out_name: str,
+    gap: float = 14.0,
+) -> tuple[str, tuple[float, float, float]]:
+    base = ROOT / variant
+    top = load_mesh(base / top_file)
+    bottom = load_mesh(base / bottom_file)
+
+    top_w, _ = extent_xy(top)
+    bottom_w, _ = extent_xy(bottom)
+
+    total = top_w + gap + bottom_w
+    top_x = -total / 2.0 + top_w / 2.0
+    bottom_x = total / 2.0 - bottom_w / 2.0
+
+    meshes = [placed(top, top_x, 0.0), placed(bottom, bottom_x, 0.0)]
+    out_file = OUT / out_name
+    dims = write_mesh(out_file, meshes)
+    return out_file.name, dims
+
+
+def build_button_material_sheet(
+    out_name: str,
+    plunger_file: str = "plunger_concave_24mm.stl",
+    bezel_file: str = "bezel_guard_24mm.stl",
+    gap: float = 10.0,
+    rotate_all_y_90: bool = False,
+) -> tuple[str, tuple[float, float, float]]:
+    plunger = load_mesh(MODULE_BUTTONS / plunger_file)
+    bezel = load_mesh(MODULE_BUTTONS / bezel_file)
+
+    if rotate_all_y_90:
+        plunger = rotate_y_90(plunger)
+        bezel = rotate_y_90(bezel)
+
+    plunger_w, _ = extent_xy(plunger)
+    bezel_w, _ = extent_xy(bezel)
+    total = plunger_w + gap + bezel_w
+    plunger_x = -total / 2.0 + plunger_w / 2.0
+    bezel_x = total / 2.0 - bezel_w / 2.0
+
+    meshes = [placed(plunger, plunger_x, 0.0), placed(bezel, bezel_x, 0.0)]
+    out_file = OUT / out_name
+    dims = write_mesh(out_file, meshes)
+    return out_file.name, dims
+
+
 def build_3up_row_sheet(
     variants: list[str],
     mesh_file: str,
@@ -230,6 +400,18 @@ def main() -> None:
         )
         summary.append(f"{name}: {dims[0]:.1f} x {dims[1]:.1f} x {dims[2]:.1f} mm")
 
+    for label, variant in VARIANT_LABELS:
+        name, dims = build_case_material_sheet(
+            variant,
+            "shell-top-print.stl",
+            "shell-bottom-print.stl",
+            f"r3-case-{label}-sheet.stl",
+        )
+        summary.append(f"{name}: {dims[0]:.1f} x {dims[1]:.1f} x {dims[2]:.1f} mm")
+
+        name, dims = build_button_material_sheet(f"r3-button-{label}-sheet.stl")
+        summary.append(f"{name}: {dims[0]:.1f} x {dims[1]:.1f} x {dims[2]:.1f} mm")
+
     name, dims = build_6up_sheet(
         VARIANTS,
         "shell-top-print.stl",
@@ -237,6 +419,18 @@ def main() -> None:
         "r3-abc-6up-sheet.stl",
         optimize_tops=True,
     )
+    summary.append(f"{name}: {dims[0]:.1f} x {dims[1]:.1f} x {dims[2]:.1f} mm")
+
+    name, dims = build_6up_kit_sheet(
+        VARIANTS,
+        "shell-top-print.stl",
+        "shell-bottom-print.stl",
+        "r3-abc-6up-kit-sheet.stl",
+        optimize_tops=True,
+    )
+    summary.append(f"{name}: {dims[0]:.1f} x {dims[1]:.1f} x {dims[2]:.1f} mm")
+
+    name, dims = build_button_6up_sheet("r3-abc-buttons-6up-sheet.stl")
     summary.append(f"{name}: {dims[0]:.1f} x {dims[1]:.1f} x {dims[2]:.1f} mm")
 
     name, dims = build_6up_sheet(
@@ -294,6 +488,14 @@ Single-file plate STLs for quick Bambu Studio imports.
 - `r3-mid-pair-sheet-screws.stl`: top+bottom screw-hole print shells for r3-mid
 - `r3-tight-pair-sheet-screws.stl`: top+bottom screw-hole print shells for r3-tight
 - `r3-abc-6up-sheet.stl`: loose/mid/tight top+bottom together (6 parts)
+- `r3-abc-6up-kit-sheet.stl`: loose/mid/tight top+bottom + 24mm button plungers/bezel guards (12 parts)
+- `r3-abc-buttons-6up-sheet.stl`: three 24mm plungers + three 24mm bezels only (6 parts)
+- `r3-case-a-sheet.stl`: case material-test pair A (maps to r3-loose)
+- `r3-case-b-sheet.stl`: case material-test pair B (maps to r3-mid)
+- `r3-case-c-sheet.stl`: case material-test pair C (maps to r3-tight)
+- `r3-button-a-sheet.stl`: button material-test pair A (24mm plunger + bezel)
+- `r3-button-b-sheet.stl`: button material-test pair B (24mm plunger + bezel)
+- `r3-button-c-sheet.stl`: button material-test pair C (24mm plunger + bezel)
 - `r3-abc-6up-sheet-screws.stl`: loose/mid/tight top+bottom screw-hole set (6 parts)
 - `r3-internals-v1-abc-6up-sheet.stl`: internals loose/base/tight top+bottom together (6 parts)
 - `r3-internals-v1-abc-6up-sheet-screws.stl`: internals loose/base/tight screw-hole set (6 parts)
@@ -305,6 +507,10 @@ Single-file plate STLs for quick Bambu Studio imports.
 - Screw pair sheets use `shell-*-print-screws.stl` sources.
 - 6-up sheets are intended for larger beds (roughly 256x256 class).
 - 6-up top rows are auto-oriented to reduce support demand.
+- `r3-abc-6up-kit-sheet.stl` adds three 24mm plungers and three 24mm bezels for one-cycle A/B/C print runs.
+- For AMS material trials with less purge, use `r3-abc-6up-sheet.stl` (cases) plus `r3-abc-buttons-6up-sheet.stl` (buttons) on separate plates.
+- A/B/C mapping: `A=r3-loose`, `B=r3-mid`, `C=r3-tight`.
+- Fast AMS workflow: import `r3-case-a/b/c-sheet.stl` and `r3-button-a/b/c-sheet.stl` together, then assign filament by object name.
 - For internals fit A/B testing without cantilever warnings, use bottoms-only 3-up sheets.
 - In Bambu Studio, you can keep as-is or use "Split to Objects" for per-part controls.
 """,
