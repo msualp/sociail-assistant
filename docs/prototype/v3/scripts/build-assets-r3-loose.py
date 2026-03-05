@@ -51,6 +51,15 @@ SIDE_SCALLOP_RADIUS = 72.0
 SHOULDER_SCALLOP_DEPTH = 0.7
 SHOULDER_SCALLOP_RADIUS = 82.0
 
+# 24mm center button module defaults (22mm remains alternate).
+BUTTON_CENTER_X = 0.0
+BUTTON_CENTER_Y = -8.0
+BUTTON_PLUNGER_OD = 24.0
+BUTTON_CUTOUT_OD = BUTTON_PLUNGER_OD + 0.6
+BUTTON_BEZEL_OD = BUTTON_PLUNGER_OD + 4.0
+BUTTON_ISLAND_OD = BUTTON_BEZEL_OD + 2.0
+BUTTON_ISLAND_RECESS = 0.6
+
 
 @dataclass
 class BoxSpec:
@@ -210,7 +219,8 @@ def build_outer_body() -> mr.Mesh:
     dz = -bbox.min.z
     body.transform(mr.AffineXf3f.translation(vec(-cx, -cy, dz)))
 
-    return apply_hand_ergonomics(body)
+    body = apply_hand_ergonomics(body)
+    return apply_button_flat_island(body)
 
 
 def apply_hand_ergonomics(body: mr.Mesh) -> mr.Mesh:
@@ -229,6 +239,21 @@ def apply_hand_ergonomics(body: mr.Mesh) -> mr.Mesh:
         cutters.append(cyl_axis(SHOULDER_SCALLOP_RADIUS, shoulder_len, 0.0, y, HEIGHT * 0.58, "x", 96))
 
     return subtract_many(body, cutters, "ergonomic")
+
+
+def apply_button_flat_island(body: mr.Mesh) -> mr.Mesh:
+    island_r = BUTTON_ISLAND_OD / 2.0
+    cutter_h = 6.0
+    island_z = HEIGHT - BUTTON_ISLAND_RECESS
+    cutter = cyl_z(
+        island_r,
+        cutter_h,
+        BUTTON_CENTER_X,
+        BUTTON_CENTER_Y,
+        island_z + cutter_h / 2.0,
+        128,
+    )
+    return boolean(body, cutter, mr.BooleanOperation.DifferenceAB, "button_island_flat")
 
 
 def split_shells(outer: mr.Mesh, inner: mr.Mesh) -> tuple[mr.Mesh, mr.Mesh]:
@@ -398,10 +423,15 @@ def neg_led_window() -> mr.Mesh:
 
 
 def neg_button() -> mr.Mesh:
-    wx, wy = 10.0, -10.0
-    well = cyl_z(3.8, 1.2, wx, wy, HEIGHT - 0.6, 72)
-    through = cyl_z(2.3, 4.0, wx, wy, HEIGHT - 2.0, 72)
-    return fuse_union([well, through], "button")
+    cutout = cyl_z(
+        BUTTON_CUTOUT_OD / 2.0,
+        10.0,
+        BUTTON_CENTER_X,
+        BUTTON_CENTER_Y,
+        HEIGHT - 5.0,
+        128,
+    )
+    return cutout
 
 
 def neg_usbc_bottom() -> mr.Mesh:
