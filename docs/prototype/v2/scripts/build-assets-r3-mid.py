@@ -62,10 +62,12 @@ LED_END_R = 1.6
 LED_Y = 14.5
 
 # Subtle body contouring for better hand comfort while preserving the v2 envelope.
-SIDE_SCALLOP_DEPTH = 0.55
-SIDE_SCALLOP_RADIUS = 58.0
-SHOULDER_SCALLOP_DEPTH = 0.35
-SHOULDER_SCALLOP_RADIUS = 66.0
+SIDE_SCALLOP_DEPTH = 0.70
+SIDE_SCALLOP_RADIUS = 56.0
+SHOULDER_SCALLOP_DEPTH = 0.50
+SHOULDER_SCALLOP_RADIUS = 62.0
+CORNER_BLEND_DEPTH = 0.40
+CORNER_BLEND_RADIUS = 78.0
 
 
 @dataclass
@@ -300,11 +302,11 @@ def split_shells(outer: mr.Mesh, inner: mr.Mesh) -> tuple[mr.Mesh, mr.Mesh]:
 
     bottom_outer = boolean(outer, slab(-40, SPLIT_Z + eps), mr.BooleanOperation.Intersection, "bottom_outer_clip")
     bottom_inner = boolean(inner, slab(-40, SPLIT_Z + eps), mr.BooleanOperation.Intersection, "bottom_inner_clip")
-    bottom_shell = boolean(bottom_outer, bottom_inner, mr.BooleanOperation.DifferenceAB, "bottom_shell")
+    bottom_shell = _voxel_subtract(bottom_outer, bottom_inner, voxel_size=0.12, max_error=0.04)
 
     top_outer = boolean(outer, slab(SPLIT_Z - eps, 60), mr.BooleanOperation.Intersection, "top_outer_clip")
     top_inner = boolean(inner, slab(SPLIT_Z - eps, 60), mr.BooleanOperation.Intersection, "top_inner_clip")
-    top_shell = boolean(top_outer, top_inner, mr.BooleanOperation.DifferenceAB, "top_shell")
+    top_shell = _voxel_subtract(top_outer, top_inner, voxel_size=0.12, max_error=0.04)
 
     return top_shell, bottom_shell
 
@@ -438,6 +440,18 @@ def add_snap_tabs(top: mr.Mesh, bottom: mr.Mesh) -> tuple[mr.Mesh, mr.Mesh]:
     return top2, bottom3
 
 
+def reopen_bottom_cavity(bottom: mr.Mesh, inner: mr.Mesh) -> mr.Mesh:
+    # Some boolean fallback paths can leave a thin seam cap over the bottom cavity.
+    # Re-cut with inner geometry to guarantee an open shell at the split plane.
+    cutter = boolean(
+        inner,
+        slab(SPLIT_Z - 0.35, HEIGHT + 6.0),
+        mr.BooleanOperation.Intersection,
+        "reopen_cavity_clip",
+    )
+    return boolean(bottom, cutter, mr.BooleanOperation.DifferenceAB, "reopen_bottom_cavity")
+
+
 def neg_usb_c_left_recess() -> mr.Mesh:
     pocket = box_mesh(BoxSpec(3.0, 14.0, 8.0, -42.5 + 1.5, 0.0, 5.0))
     opening = box_mesh(BoxSpec(6.0, 9.5, 3.5, -42.5 + 3.0, 0.0, 5.0))
@@ -527,6 +541,7 @@ def main() -> None:
     top, bottom = split_shells(outer, inner)
     top, bottom = add_tongue_and_groove(top, bottom, inner)
     top, bottom = add_snap_tabs(top, bottom)
+    bottom = reopen_bottom_cavity(bottom, inner)
 
     neg_usb = neg_usb_c_left_recess()
     neg_led = neg_led_window_rounded()
