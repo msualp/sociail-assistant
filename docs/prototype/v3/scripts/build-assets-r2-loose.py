@@ -230,11 +230,11 @@ def split_shells(outer: mr.Mesh, inner: mr.Mesh) -> tuple[mr.Mesh, mr.Mesh]:
     eps = 0.01
     bottom_outer = boolean(outer, slab(-30, SPLIT_Z + eps), mr.BooleanOperation.Intersection, "bottom_outer")
     bottom_inner = boolean(inner, slab(-30, SPLIT_Z + eps), mr.BooleanOperation.Intersection, "bottom_inner")
-    bottom = boolean(bottom_outer, bottom_inner, mr.BooleanOperation.DifferenceAB, "bottom_shell")
+    bottom = _voxel_subtract(bottom_outer, bottom_inner, voxel_size=0.12, max_error=0.04)
 
     top_outer = boolean(outer, slab(SPLIT_Z - eps, 40), mr.BooleanOperation.Intersection, "top_outer")
     top_inner = boolean(inner, slab(SPLIT_Z - eps, 40), mr.BooleanOperation.Intersection, "top_inner")
-    top = boolean(top_outer, top_inner, mr.BooleanOperation.DifferenceAB, "top_shell")
+    top = _voxel_subtract(top_outer, top_inner, voxel_size=0.12, max_error=0.04)
     return top, bottom
 
 
@@ -342,6 +342,18 @@ def add_snap_tabs(top: mr.Mesh, bottom: mr.Mesh) -> tuple[mr.Mesh, mr.Mesh]:
     return t2, b3
 
 
+def reopen_bottom_cavity(bottom: mr.Mesh, inner: mr.Mesh) -> mr.Mesh:
+    # Some boolean fallback paths can leave a thin seam cap over the bottom cavity.
+    # Re-cut with inner geometry to guarantee an open shell at the split plane.
+    cutter = boolean(
+        inner,
+        slab(SPLIT_Z - 0.35, HEIGHT + 6.0),
+        mr.BooleanOperation.Intersection,
+        "reopen_cavity_clip",
+    )
+    return boolean(bottom, cutter, mr.BooleanOperation.DifferenceAB, "reopen_bottom_cavity")
+
+
 def neg_magsafe_ring() -> mr.Mesh:
     outer = cyl_z(28.0, 1.8, 0, 0, 0.9, 128)
     inner = cyl_z(23.0, 2.2, 0, 0, 1.1, 128)
@@ -434,6 +446,7 @@ def main() -> None:
     top, bottom = split_shells(outer, inner)
     top, bottom = add_tongue_groove(top, bottom, inner)
     top, bottom = add_snap_tabs(top, bottom)
+    bottom = reopen_bottom_cavity(bottom, inner)
 
     neg_ring = neg_magsafe_ring()
     neg_led = neg_led_window()

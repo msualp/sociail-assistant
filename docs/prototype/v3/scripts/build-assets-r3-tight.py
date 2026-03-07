@@ -45,11 +45,13 @@ SNAP_TAB_THICK = 1.55
 SNAP_SLOT_DEPTH = 1.40
 SNAP_NOTCH_EXTRA = 0.42
 
-# Subtle side contours for comfort without compromising MagSafe back planarity.
-SIDE_SCALLOP_DEPTH = 1.1
-SIDE_SCALLOP_RADIUS = 72.0
-SHOULDER_SCALLOP_DEPTH = 0.7
-SHOULDER_SCALLOP_RADIUS = 82.0
+# Apple-leaning ergonomic contour set: less boxy, smoother in-hand transitions.
+SIDE_SCALLOP_DEPTH = 1.55
+SIDE_SCALLOP_RADIUS = 68.0
+SHOULDER_SCALLOP_DEPTH = 1.05
+SHOULDER_SCALLOP_RADIUS = 74.0
+CORNER_BLEND_DEPTH = 0.85
+CORNER_BLEND_RADIUS = 88.0
 
 # 24mm center button module defaults (22mm remains alternate).
 BUTTON_CENTER_X = 0.0
@@ -260,11 +262,11 @@ def split_shells(outer: mr.Mesh, inner: mr.Mesh) -> tuple[mr.Mesh, mr.Mesh]:
     eps = 0.01
     bottom_outer = boolean(outer, slab(-30, SPLIT_Z + eps), mr.BooleanOperation.Intersection, "bottom_outer")
     bottom_inner = boolean(inner, slab(-30, SPLIT_Z + eps), mr.BooleanOperation.Intersection, "bottom_inner")
-    bottom = boolean(bottom_outer, bottom_inner, mr.BooleanOperation.DifferenceAB, "bottom_shell")
+    bottom = _voxel_subtract(bottom_outer, bottom_inner, voxel_size=0.12, max_error=0.04)
 
     top_outer = boolean(outer, slab(SPLIT_Z - eps, 40), mr.BooleanOperation.Intersection, "top_outer")
     top_inner = boolean(inner, slab(SPLIT_Z - eps, 40), mr.BooleanOperation.Intersection, "top_inner")
-    top = boolean(top_outer, top_inner, mr.BooleanOperation.DifferenceAB, "top_shell")
+    top = _voxel_subtract(top_outer, top_inner, voxel_size=0.12, max_error=0.04)
     return top, bottom
 
 
@@ -377,6 +379,18 @@ def add_snap_tabs(top: mr.Mesh, bottom: mr.Mesh) -> tuple[mr.Mesh, mr.Mesh]:
     b3 = boolean(b2, slots_u, mr.BooleanOperation.DifferenceAB, "sub_slots")
     t2 = boolean(top, notches_u, mr.BooleanOperation.DifferenceAB, "sub_notches")
     return t2, b3
+
+
+def reopen_bottom_cavity(bottom: mr.Mesh, inner: mr.Mesh) -> mr.Mesh:
+    # Some boolean fallback paths can leave a thin seam cap over the bottom cavity.
+    # Re-cut with inner geometry to guarantee an open shell at the split plane.
+    cutter = boolean(
+        inner,
+        slab(SPLIT_Z - 0.35, HEIGHT + 6.0),
+        mr.BooleanOperation.Intersection,
+        "reopen_cavity_clip",
+    )
+    return boolean(bottom, cutter, mr.BooleanOperation.DifferenceAB, "reopen_bottom_cavity")
 
 
 def neg_magsafe_ring() -> mr.Mesh:
@@ -498,6 +512,7 @@ def main() -> None:
     top, bottom = split_shells(outer, inner)
     top, bottom = add_tongue_groove(top, bottom, inner)
     top, bottom = add_snap_tabs(top, bottom)
+    bottom = reopen_bottom_cavity(bottom, inner)
 
     neg_ring = neg_magsafe_ring()
     neg_led = neg_led_window()
