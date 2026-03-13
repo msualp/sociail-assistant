@@ -8,7 +8,7 @@ Implemented in this pass:
 - 5.2mm continuous body rounds with subtle side/shoulder contouring
 - 1.0mm tongue-and-groove seam (0.08mm clearance target, tighter fit)
 - 4x snap tabs near end arcs (+/-30deg locations), tuned for lower insertion force and easier hand assembly
-- Internal-fit pack: board rails, snap-switch cradle, speaker seat, mic guides, USB collar, LED end stops
+- Internal-fit pack: board rails, snap-switch cradle, speaker seat, mic guides, USB collar, LED end stops, battery tray
 
 Canonical parts:
 - shell-top.stl
