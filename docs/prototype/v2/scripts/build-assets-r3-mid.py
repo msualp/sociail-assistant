@@ -61,6 +61,63 @@ LED_WIDTH = 3.2
 LED_END_R = 1.6
 LED_Y = 14.5
 
+FLOOR_Z = WALL
+
+# Internal XIAO board cradle (21 x 17.5 mm class).
+BOARD_X = 21.0
+BOARD_Y = 17.5
+BOARD_CLEAR = 0.30
+BOARD_BASE_H = 0.9
+BOARD_RAIL_T = 1.05
+BOARD_RAIL_H = 3.0
+BOARD_REAR_STOP_T = 1.0
+BOARD_NUB_X = 0.25
+BOARD_NUB_Y = 4.8
+BOARD_NUB_Z = 1.0
+BOARD_CX = -30.5
+BOARD_CY = 0.0
+
+# Switch mount (6x6mm tact)
+SWITCH_FOOTPRINT = 6.0
+SWITCH_CLEAR = 0.2
+SWITCH_TOTAL_H = 3.5
+SWITCH_TOP_CLEAR = 0.4
+SWITCH_BASE_H = 1.0
+SWITCH_WALL_H = 1.6
+SWITCH_CX = BUTTON_CENTER_X
+SWITCH_CY = BUTTON_CENTER_Y
+
+SWITCH_LIP_T = 0.6
+SWITCH_LIP_Z = 0.6
+SWITCH_BACK_STOP_T = 0.8
+
+# LED strip channel (WS2812B class)
+LED_STRIP_LEN = 42.0
+LED_STRIP_W = 6.0
+LED_STRIP_DEPTH = 1.6
+LED_STRIP_Z = HEIGHT - 2.4
+LED_STRIP_Y = LED_Y
+
+LED_END_STOP_W = 2.4
+LED_END_STOP_H = 1.2
+
+SPK_OD = 23.0
+SPK_CLEAR = 0.25
+SPK_SEAT_H = 1.0
+SPK_TAB_W = 3.0
+SPK_TAB_T = 1.0
+SPK_TAB_H = 1.2
+SPK_CX = 18.0
+SPK_CY = 0.0
+
+MIC_GUIDE_T = 0.8
+MIC_GUIDE_H = 1.2
+MIC_GUIDE_Z = 10.0
+
+USB_COLLAR_X = 16.0
+USB_COLLAR_Y = 14.0
+USB_COLLAR_Z = 4.6
+
 # Subtle body contouring for better hand comfort while preserving the v2 envelope.
 SIDE_SCALLOP_DEPTH = 0.70
 SIDE_SCALLOP_RADIUS = 56.0
@@ -453,9 +510,10 @@ def reopen_bottom_cavity(bottom: mr.Mesh, inner: mr.Mesh) -> mr.Mesh:
 
 
 def neg_usb_c_left_recess() -> mr.Mesh:
-    pocket = box_mesh(BoxSpec(3.0, 14.0, 8.0, -42.5 + 1.5, 0.0, 5.0))
-    opening = box_mesh(BoxSpec(6.0, 9.5, 3.5, -42.5 + 3.0, 0.0, 5.0))
-    return fuse_union([pocket, opening], "neg_usb")
+    # Guided USB-C tunnel: outer opening + internal alignment tunnel.
+    opening = box_mesh(BoxSpec(6.0, 9.5, 3.5, -LENGTH / 2.0 + 2.0, 0.0, 5.0))
+    tunnel = box_mesh(BoxSpec(12.2, 12.0, 4.4, -LENGTH / 2.0 + 6.5, 0.0, 5.0))
+    return fuse_union([opening, tunnel], "neg_usb_tunnel")
 
 
 def neg_led_window_rounded() -> mr.Mesh:
@@ -473,6 +531,27 @@ def neg_led_window_rounded() -> mr.Mesh:
 def neg_button_well() -> mr.Mesh:
     cutout = cyl_z(BUTTON_CUTOUT_OD / 2.0, 10.0, BUTTON_CENTER_X, BUTTON_CENTER_Y, HEIGHT - 5.0, 128)
     return cutout
+
+
+def led_end_stops() -> mr.Mesh:
+    zc = LED_STRIP_Z
+    left_x = -LED_STRIP_LEN / 2.0 + LED_END_STOP_W / 2.0
+    right_x = LED_STRIP_LEN / 2.0 - LED_END_STOP_W / 2.0
+    stops = [
+        box_mesh(BoxSpec(LED_END_STOP_W, LED_STRIP_W, LED_END_STOP_H, left_x, LED_STRIP_Y, zc)),
+        box_mesh(BoxSpec(LED_END_STOP_W, LED_STRIP_W, LED_END_STOP_H, right_x, LED_STRIP_Y, zc)),
+    ]
+    return fuse_union(stops, "led_stops")
+
+
+def neg_led_channel() -> mr.Mesh:
+    channel = box_mesh(BoxSpec(LED_STRIP_LEN, LED_STRIP_W, LED_STRIP_DEPTH, 0.0, LED_STRIP_Y, LED_STRIP_Z))
+    return boolean(channel, led_end_stops(), mr.BooleanOperation.DifferenceAB, "led_channel")
+
+
+def pry_notch() -> mr.Mesh:
+    # Small external notch for pry-tool access at the seam.
+    return box_mesh(BoxSpec(3.8, 2.0, 1.6, LENGTH / 2.0 - 2.0, 0.0, SPLIT_Z + 0.4))
 
 
 def neg_mic_perforations() -> mr.Mesh:
@@ -503,6 +582,164 @@ def neg_screw_bosses_4x() -> mr.Mesh:
     pts = [(-28.0, -11.0), (-28.0, 11.0), (28.0, -11.0), (28.0, 11.0)]
     holes = [cyl_z(1.5, 20.0, x, y, 7.0, 48) for (x, y) in pts]
     return merge_components(holes)
+
+def board_guides() -> mr.Mesh:
+    slot_x = BOARD_X + 2.0 * BOARD_CLEAR
+    slot_y = BOARD_Y + 2.0 * BOARD_CLEAR
+    base = box_mesh(
+        BoxSpec(
+            slot_x + 2.0 * BOARD_RAIL_T + 2.0,
+            slot_y + 1.8,
+            BOARD_BASE_H,
+            BOARD_CX,
+            BOARD_CY,
+            FLOOR_Z + BOARD_BASE_H / 2.0,
+        )
+    )
+    rail_cz = FLOOR_Z + BOARD_RAIL_H / 2.0
+    rail_len = slot_y + 1.0
+    lx = BOARD_CX - slot_x / 2.0 - BOARD_RAIL_T / 2.0
+    rx = BOARD_CX + slot_x / 2.0 + BOARD_RAIL_T / 2.0
+    rails = [
+        box_mesh(BoxSpec(BOARD_RAIL_T, rail_len, BOARD_RAIL_H, lx, BOARD_CY, rail_cz)),
+        box_mesh(BoxSpec(BOARD_RAIL_T, rail_len, BOARD_RAIL_H, rx, BOARD_CY, rail_cz)),
+    ]
+    stop_cy = BOARD_CY + slot_y / 2.0 + BOARD_REAR_STOP_T / 2.0
+    rear_stop = box_mesh(
+        BoxSpec(
+            slot_x + 2.0 * BOARD_RAIL_T,
+            BOARD_REAR_STOP_T,
+            BOARD_RAIL_H - 0.2,
+            BOARD_CX,
+            stop_cy,
+            FLOOR_Z + (BOARD_RAIL_H - 0.2) / 2.0,
+        )
+    )
+    nub_cz = FLOOR_Z + BOARD_RAIL_H - BOARD_NUB_Z / 2.0
+    nubs = [
+        box_mesh(
+            BoxSpec(
+                BOARD_NUB_X,
+                BOARD_NUB_Y,
+                BOARD_NUB_Z,
+                BOARD_CX - slot_x / 2.0 + BOARD_NUB_X / 2.0,
+                BOARD_CY,
+                nub_cz,
+            )
+        ),
+        box_mesh(
+            BoxSpec(
+                BOARD_NUB_X,
+                BOARD_NUB_Y,
+                BOARD_NUB_Z,
+                BOARD_CX + slot_x / 2.0 - BOARD_NUB_X / 2.0,
+                BOARD_CY,
+                nub_cz,
+            )
+        ),
+    ]
+    lead_x = BOARD_CX - slot_x / 2.0 - 0.5
+    leads = [
+        box_mesh(BoxSpec(2.0, 2.8, 1.6, lead_x, BOARD_CY - slot_y / 2.0 - 0.4, FLOOR_Z + 0.8)),
+        box_mesh(BoxSpec(2.0, 2.8, 1.6, lead_x, BOARD_CY + slot_y / 2.0 + 0.4, FLOOR_Z + 0.8)),
+    ]
+    return fuse_union([base, rear_stop] + rails + nubs + leads, "board_guides")
+
+
+def switch_mount() -> mr.Mesh:
+    slot = SWITCH_FOOTPRINT + 2.0 * SWITCH_CLEAR
+    base_top = SPLIT_Z - SWITCH_TOP_CLEAR - SWITCH_TOTAL_H
+    base_cz = base_top - SWITCH_BASE_H / 2.0
+    base = box_mesh(BoxSpec(slot + 1.6, slot + 1.6, SWITCH_BASE_H, SWITCH_CX, SWITCH_CY, base_cz))
+    wall_cz = base_top + SWITCH_WALL_H / 2.0
+    wall_t = 0.8
+    lx = SWITCH_CX - slot / 2.0 - wall_t / 2.0
+    rx = SWITCH_CX + slot / 2.0 + wall_t / 2.0
+    walls = [
+        box_mesh(BoxSpec(wall_t, slot + 0.8, SWITCH_WALL_H, lx, SWITCH_CY, wall_cz)),
+        box_mesh(BoxSpec(wall_t, slot + 0.8, SWITCH_WALL_H, rx, SWITCH_CY, wall_cz)),
+    ]
+
+    lip_z = base_top + SWITCH_WALL_H - SWITCH_LIP_Z / 2.0
+    lip_y = SWITCH_CY
+    lip_len = slot - 0.6
+    left_lip = box_mesh(
+        BoxSpec(
+            SWITCH_LIP_T,
+            lip_len,
+            SWITCH_LIP_Z,
+            SWITCH_CX - slot / 2.0 + SWITCH_LIP_T / 2.0 - 0.1,
+            lip_y,
+            lip_z,
+        )
+    )
+    right_lip = box_mesh(
+        BoxSpec(
+            SWITCH_LIP_T,
+            lip_len,
+            SWITCH_LIP_Z,
+            SWITCH_CX + slot / 2.0 - SWITCH_LIP_T / 2.0 + 0.1,
+            lip_y,
+            lip_z,
+        )
+    )
+
+    back_stop = box_mesh(
+        BoxSpec(
+            slot + 1.2,
+            SWITCH_BACK_STOP_T,
+            SWITCH_WALL_H,
+            SWITCH_CX,
+            SWITCH_CY + slot / 2.0 + SWITCH_BACK_STOP_T / 2.0,
+            wall_cz,
+        )
+    )
+
+    return fuse_union([base, back_stop] + walls + [left_lip, right_lip], "switch_mount")
+
+
+def speaker_seat() -> mr.Mesh:
+    seat_r = SPK_OD / 2.0 + SPK_CLEAR
+    seat = cyl_z(seat_r, SPK_SEAT_H, SPK_CX, SPK_CY, FLOOR_Z + SPK_SEAT_H / 2.0, 96)
+
+    tab_z = FLOOR_Z + SPK_SEAT_H + SPK_TAB_H / 2.0
+    tab_r = SPK_OD / 2.0 - SPK_TAB_T / 2.0
+    tabs = [
+        box_mesh(BoxSpec(SPK_TAB_W, SPK_TAB_T, SPK_TAB_H, SPK_CX + tab_r, SPK_CY, tab_z)),
+        box_mesh(BoxSpec(SPK_TAB_W, SPK_TAB_T, SPK_TAB_H, SPK_CX - tab_r, SPK_CY, tab_z)),
+        box_mesh(BoxSpec(SPK_TAB_T, SPK_TAB_W, SPK_TAB_H, SPK_CX, SPK_CY + tab_r, tab_z)),
+    ]
+    return fuse_union([seat] + tabs, "speaker_seat")
+
+
+def mic_guides() -> mr.Mesh:
+    y = WIDTH / 2.0 - WALL - MIC_GUIDE_T / 2.0
+    guides = []
+    for x in (-8.0, -4.0, 0.0, 4.0, 8.0):
+        guides.append(cyl_axis(1.1, MIC_GUIDE_T, x, y, MIC_GUIDE_Z, "y", 48))
+    return fuse_union(guides, "mic_guides")
+
+
+def usb_collar() -> mr.Mesh:
+    cx = -LENGTH / 2.0 + 6.5
+    cy = 0.0
+    cz = 5.0
+    return box_mesh(BoxSpec(USB_COLLAR_X, USB_COLLAR_Y, USB_COLLAR_Z, cx, cy, cz))
+
+def internal_wire_channels() -> mr.Mesh:
+    return fuse_union(
+        [
+            box_mesh(BoxSpec(2.6, 22.0, 0.9, -8.0, 0.0, FLOOR_Z + 0.45)),
+            box_mesh(BoxSpec(2.6, 20.0, 0.9, 8.0, 0.0, FLOOR_Z + 0.45)),
+            box_mesh(BoxSpec(4.0, 8.0, 0.9, -20.0, 0.0, FLOOR_Z + 0.45)),
+        ],
+        "wire_channels",
+    )
+
+
+def add_internal_fit_pack(bottom: mr.Mesh) -> mr.Mesh:
+    mounts = fuse_union([board_guides(), switch_mount(), speaker_seat(), usb_collar()], "internal_pack")
+    return boolean(bottom, mounts, mr.BooleanOperation.Union, "add_internal_pack")
 
 
 
@@ -541,6 +778,8 @@ def main() -> None:
     top, bottom = split_shells(outer, inner)
     top, bottom = add_tongue_and_groove(top, bottom, inner)
     top, bottom = add_snap_tabs(top, bottom)
+    top = boolean(top, mic_guides(), mr.BooleanOperation.Union, "mic_guides")
+    top = boolean(top, pry_notch(), mr.BooleanOperation.DifferenceAB, "pry_notch")
     bottom = reopen_bottom_cavity(bottom, inner)
 
     neg_usb = neg_usb_c_left_recess()
@@ -550,8 +789,10 @@ def main() -> None:
     neg_spk = neg_speaker_grill()
     neg_scr = neg_screw_bosses_4x()
 
-    top_print = subtract_many(top, [neg_led, neg_btn], "top_print")
+    top_print = subtract_many(top, [neg_led, neg_btn, neg_led_channel()], "top_print")
     bottom_print = subtract_many(bottom, [neg_usb, neg_mic, neg_spk], "bottom_print")
+    bottom_print = add_internal_fit_pack(bottom_print)
+    bottom_print = boolean(bottom_print, internal_wire_channels(), mr.BooleanOperation.DifferenceAB, "sub_wire_channels")
 
     top_print_scr = subtract_many(top_print, [neg_scr], "top_print_screws")
     bottom_print_scr = subtract_many(bottom_print, [neg_scr], "bottom_print_screws")
@@ -576,7 +817,7 @@ def main() -> None:
     save_mesh(top, OUT_DIR / "shell-top.stl")
     save_mesh(bottom, OUT_DIR / "shell-bottom.stl")
 
-    save_mesh(neg_usb, OUT_DIR / "neg-usbc-left-recess.stl")
+    save_mesh(neg_usb, OUT_DIR / "neg-usbc-left-tunnel.stl")
     save_mesh(neg_led, OUT_DIR / "neg-led-window.stl")
     save_mesh(neg_btn, OUT_DIR / "neg-button-well.stl")
     save_mesh(neg_mic, OUT_DIR / "neg-mic-array.stl")
@@ -598,12 +839,13 @@ def main() -> None:
             "Implemented in this pass:\n"
             "- 5.2mm continuous body rounds with subtle side/shoulder contouring\n"
             "- 1.0mm tongue-and-groove seam (0.12mm clearance target, mid fit)\n"
-            "- 4x snap tabs near end arcs (+/-30deg locations), tuned for balanced insertion/retention\n\n"
+            "- 4x snap tabs near end arcs (+/-30deg locations), tuned for lower insertion force and easier hand assembly\n"
+            "- Internal-fit pack: board rails, snap-switch cradle, speaker seat, mic guides, USB collar, LED end stops\n\n"
             "Canonical parts:\n"
             "- shell-top.stl\n"
             "- shell-bottom.stl\n\n"
             "Negative cutouts:\n"
-            "- neg-usbc-left-recess.stl\n"
+            "- neg-usbc-left-tunnel.stl\n"
             "- neg-led-window.stl\n"
             "- neg-button-well.stl\n"
             "- neg-mic-array.stl\n"
