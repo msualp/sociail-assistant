@@ -107,8 +107,8 @@ SPK_SEAT_H = 1.0
 SPK_TAB_W = 3.0
 SPK_TAB_T = 1.0
 SPK_TAB_H = 1.2
-SPK_CX = 18.0
-SPK_CY = 0.0
+SPK_CX = 0.0
+SPK_CY = WIDTH / 2.0 - WALL - SPK_OD / 2.0 - 1.0
 
 MIC_GUIDE_T = 0.8
 MIC_GUIDE_H = 1.2
@@ -117,6 +117,14 @@ MIC_GUIDE_Z = 10.0
 USB_COLLAR_X = 16.0
 USB_COLLAR_Y = 14.0
 USB_COLLAR_Z = 4.6
+
+BATTERY_SLOT_X = 30.0
+BATTERY_SLOT_Y = 12.0
+BATTERY_BASE_H = 0.6
+BATTERY_WALL_T = 1.0
+BATTERY_WALL_H = 2.2
+BATTERY_CX = -10.0
+BATTERY_CY = -14.0
 
 # Subtle body contouring for better hand comfort while preserving the v2 envelope.
 SIDE_SCALLOP_DEPTH = 0.70
@@ -712,6 +720,66 @@ def speaker_seat() -> mr.Mesh:
     return fuse_union([seat] + tabs, "speaker_seat")
 
 
+
+def battery_tray() -> mr.Mesh:
+    base = box_mesh(
+        BoxSpec(
+            BATTERY_SLOT_X,
+            BATTERY_SLOT_Y,
+            BATTERY_BASE_H,
+            BATTERY_CX,
+            BATTERY_CY,
+            FLOOR_Z + BATTERY_BASE_H / 2.0,
+        )
+    )
+    wall_cz = FLOOR_Z + BATTERY_BASE_H + BATTERY_WALL_H / 2.0
+    wall_x = BATTERY_SLOT_X / 2.0 + BATTERY_WALL_T / 2.0
+    wall_y = BATTERY_SLOT_Y / 2.0 + BATTERY_WALL_T / 2.0
+    walls = [
+        box_mesh(
+            BoxSpec(
+                BATTERY_WALL_T,
+                BATTERY_SLOT_Y + 0.6,
+                BATTERY_WALL_H,
+                BATTERY_CX - wall_x,
+                BATTERY_CY,
+                wall_cz,
+            )
+        ),
+        box_mesh(
+            BoxSpec(
+                BATTERY_WALL_T,
+                BATTERY_SLOT_Y + 0.6,
+                BATTERY_WALL_H,
+                BATTERY_CX + wall_x,
+                BATTERY_CY,
+                wall_cz,
+            )
+        ),
+        box_mesh(
+            BoxSpec(
+                BATTERY_SLOT_X + 0.6,
+                BATTERY_WALL_T,
+                BATTERY_WALL_H,
+                BATTERY_CX,
+                BATTERY_CY - wall_y,
+                wall_cz,
+            )
+        ),
+        box_mesh(
+            BoxSpec(
+                BATTERY_SLOT_X + 0.6,
+                BATTERY_WALL_T,
+                BATTERY_WALL_H,
+                BATTERY_CX,
+                BATTERY_CY + wall_y,
+                wall_cz,
+            )
+        ),
+    ]
+    return fuse_union([base] + walls, "battery_tray")
+
+
 def mic_guides() -> mr.Mesh:
     y = WIDTH / 2.0 - WALL - MIC_GUIDE_T / 2.0
     guides = []
@@ -738,7 +806,7 @@ def internal_wire_channels() -> mr.Mesh:
 
 
 def add_internal_fit_pack(bottom: mr.Mesh) -> mr.Mesh:
-    mounts = fuse_union([board_guides(), switch_mount(), speaker_seat(), usb_collar()], "internal_pack")
+    mounts = fuse_union([board_guides(), switch_mount(), speaker_seat(), battery_tray(), usb_collar()], "internal_pack")
     return boolean(bottom, mounts, mr.BooleanOperation.Union, "add_internal_pack")
 
 
@@ -840,7 +908,7 @@ def main() -> None:
             "- 5.2mm continuous body rounds with subtle side/shoulder contouring\n"
             "- 1.0mm tongue-and-groove seam (0.18mm clearance target, looser fit)\n"
             "- 4x snap tabs near end arcs (+/-30deg locations), tuned for lower insertion force and easier hand assembly\n"
-            "- Internal-fit pack: board rails, snap-switch cradle, speaker seat, mic guides, USB collar, LED end stops\n\n"
+            "- Internal-fit pack: board rails, snap-switch cradle, speaker seat, mic guides, USB collar, LED end stops, battery tray\n\n"
             "Canonical parts:\n"
             "- shell-top.stl\n"
             "- shell-bottom.stl\n\n"
